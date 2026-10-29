@@ -1,0 +1,915 @@
+/* ============================================================
+   AXIS — UNIFIED DESIGN SYSTEM
+   Единый фирменный стиль для всех страниц.
+   Подключается ПОСЛЕ style.css и всех page-specific CSS.
+   Ничего не ломает — только визуально улучшает.
+   ============================================================ */
+
+/* ============================================================
+   1. ПЕРЕМЕННЫЕ И БАЗА
+   ============================================================ */
+:root {
+  --ax-orange: #ff8a2b;
+  --ax-pink:   #ff3d8a;
+  --ax-purple: #a44bff;
+  --ax-blue:   #2ea8ff;
+
+  --ax-gradient: linear-gradient(135deg,
+    #ff8a2b 0%,
+    #ff3d8a 35%,
+    #a44bff 65%,
+    #2ea8ff 100%);
+
+  --ax-gradient-soft: linear-gradient(135deg,
+    rgba(255,138,43,0.12) 0%,
+    rgba(255,61,138,0.12) 35%,
+    rgba(164,75,255,0.12) 65%,
+    rgba(46,168,255,0.12) 100%);
+
+  --ax-mono: 'SF Mono', 'Consolas', 'Monaco', 'Menlo', monospace;
+}
+
+/* Все цифры — моноширинные, одинаковой ширины */
+.ax-num,
+.ws-value,
+.portfolio-total,
+.portfolio-pct,
+.asset-amount,
+.asset-usd,
+.asset-pct,
+.info-row b,
+.amount-input input,
+.an-kpi-value,
+.an-cs-value,
+.trade-pnl,
+.trade-pct,
+.lb-pnl,
+.lb-pnl-pct,
+.lb-volume,
+.lb-trades,
+.lb-winrate-text,
+.lb-rank,
+.podium-pnl,
+.lb-bs-value,
+.sig-price-current,
+.sig-price-change,
+.sig-level-value,
+.sig-meta-value,
+.sig-timer-value,
+.sig-hs-value,
+.hist-price,
+.hist-result,
+.hist-duration,
+.pair-price-value,
+.pair-price-change,
+.ps-value,
+.ob-price,
+.ob-amount,
+.ob-total,
+.ob-mid-price,
+.tr-price,
+.tr-amount,
+.tr-time,
+.tf-available,
+.tf-field input,
+.tf-info-row b,
+#pnlValue,
+#pnlPct,
+.pd-id,
+.pd-amount-value,
+.pd-amount-currency,
+.pd-amount-dec,
+.pd-iban,
+.por-hero-value,
+.por-hero-pct,
+.por-kpi-value,
+.por-wallet-addr,
+.por-wallet-amount,
+.por-audit-row b,
+.stat-value,
+.summary-item span:last-child,
+.trade-name,
+.trade-time,
+.trade-card .trade-pnl,
+.trade-card .trade-pct {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1, 'kern' 1;
+}
+
+/* ============================================================
+   2. SVG-ИКОНКИ — единый класс
+   ============================================================ */
+.ic,
+.ax-ic {
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  flex-shrink: 0;
+  vertical-align: -0.15em;
+  fill: none;
+  color: inherit;
+  transition: filter 0.2s, color 0.2s;
+}
+
+/* Градиентные иконки через use */
+.ax-ic-grad {
+  filter: drop-shadow(0 0 5px rgba(164, 75, 255, 0.4));
+}
+.ax-ic-grad:hover {
+  filter: drop-shadow(0 0 8px rgba(164, 75, 255, 0.7));
+}
+
+/* Плейсхолдер для иконки в сайдбаре */
+.nav-item .ico {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+.nav-item .ico svg,
+.nav-item .ico .ic {
+  display: block;
+  width: 20px;
+  height: 20px;
+  filter: drop-shadow(0 0 3px rgba(164, 75, 255, 0.35));
+  transition: filter 0.2s;
+}
+.nav-item:hover .ico svg,
+.nav-item:hover .ico .ic {
+  filter: drop-shadow(0 0 6px rgba(164, 75, 255, 0.6));
+}
+.nav-item.active .ico svg,
+.nav-item.active .ico .ic {
+  filter: drop-shadow(0 0 8px rgba(164, 75, 255, 0.9));
+}
+
+/* ============================================================
+   3. ЗАГОЛОВКИ СТРАНИЦ — градиентный текст + полоски
+   ============================================================ */
+.topbar-title {
+  position: relative;
+  padding-left: 14px;
+}
+.topbar-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 4px;
+  bottom: 4px;
+  width: 3px;
+  border-radius: 2px;
+  background: var(--ax-gradient);
+  box-shadow: 0 0 12px rgba(164, 75, 255, 0.6);
+}
+.topbar-title h1 {
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: -0.3px;
+  line-height: 1.15;
+  background: linear-gradient(135deg,
+    #ffffff 0%,
+    #e8ddff 40%,
+    #b9a8ff 75%,
+    #7c9bff 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  position: relative;
+  display: inline-block;
+  padding-right: 2px;
+  filter: drop-shadow(0 0 18px rgba(164, 75, 255, 0.35))
+          drop-shadow(0 0 6px rgba(46, 168, 255, 0.2));
+}
+.topbar-title h1::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 100%;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--ax-gradient);
+  box-shadow: 0 0 12px rgba(164, 75, 255, 0.6);
+  opacity: 0.85;
+}
+
+/* Лицензия под заголовком */
+.breadcrumb {
+  font-size: 11.5px;
+  color: #8b93a7;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  margin-top: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.breadcrumb b {
+  font-family: var(--ax-mono);
+  font-variant-numeric: tabular-nums;
+  font-weight: 800;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  color: #c8b5ff !important;
+  padding: 2px 8px;
+  background: rgba(164, 75, 255, 0.1);
+  border: 1px solid rgba(164, 75, 255, 0.25);
+  border-radius: 5px;
+  text-shadow: 0 0 8px rgba(164, 75, 255, 0.4);
+}
+.breadcrumb span {
+  color: #a48cff !important;
+  font-weight: 800;
+}
+
+/* Заголовки панелей */
+.panel-head h3,
+.panel-title,
+.trades-head h4 {
+  font-size: 15px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 0.2px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.panel-head h3::before,
+.panel-title::before,
+.trades-head h4::before {
+  content: '';
+  width: 4px;
+  height: 18px;
+  border-radius: 2px;
+  background: var(--ax-gradient);
+  box-shadow: 0 0 10px rgba(164, 75, 255, 0.45);
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   4. КНОПКИ — единый фирменный стиль
+   ============================================================ */
+
+/* Базовая фирменная кнопка */
+.ax-btn,
+.btn-primary,
+.btn-apply,
+.btn-convert,
+.tf-submit,
+.wd-pay-btn,
+.cv-action-btn,
+.vf-action-btn,
+.lm-action-btn,
+.tp-action-btn,
+.bc-action-btn,
+.sc-action-btn,
+.tx-action-btn,
+.tx2-btn-yes,
+.por-verify-btn:not(.ghost) {
+  background: var(--ax-gradient) !important;
+  background-size: 200% 200% !important;
+  color: #fff !important;
+  border: none !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.8px !important;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    0 8px 26px rgba(164, 75, 255, 0.45),
+    0 0 0 1px rgba(255, 255, 255, 0.08) inset !important;
+  transition: transform 0.25s, box-shadow 0.25s, background-position 0.6s;
+  animation: axBtnFlow 6s ease infinite;
+  cursor: pointer;
+}
+@keyframes axBtnFlow {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Блик при наведении */
+.ax-btn::before,
+.btn-primary::before,
+.btn-apply::before,
+.btn-convert::before,
+.tf-submit::before,
+.wd-pay-btn::before,
+.cv-action-btn::before,
+.vf-action-btn::before,
+.lm-action-btn::before,
+.tp-action-btn::before,
+.bc-action-btn::before,
+.sc-action-btn::before,
+.por-verify-btn:not(.ghost)::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+  transition: left 0.7s;
+  pointer-events: none;
+}
+.ax-btn:hover::before,
+.btn-primary:hover::before,
+.btn-apply:hover::before,
+.btn-convert:hover::before,
+.tf-submit:hover::before,
+.wd-pay-btn:hover::before,
+.cv-action-btn:hover::before,
+.vf-action-btn:hover::before,
+.lm-action-btn:hover::before,
+.tp-action-btn:hover::before,
+.bc-action-btn:hover::before,
+.sc-action-btn:hover::before,
+.por-verify-btn:not(.ghost):hover::before {
+  left: 100%;
+}
+.ax-btn:hover,
+.btn-primary:hover,
+.btn-apply:hover,
+.btn-convert:hover,
+.tf-submit:hover,
+.wd-pay-btn:hover,
+.cv-action-btn:hover,
+.vf-action-btn:hover,
+.lm-action-btn:hover,
+.tp-action-btn:hover,
+.bc-action-btn:hover,
+.sc-action-btn:hover,
+.por-verify-btn:not(.ghost):hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 14px 36px rgba(164, 75, 255, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.14) inset !important;
+}
+.ax-btn:active,
+.btn-primary:active,
+.btn-apply:active,
+.btn-convert:active,
+.tf-submit:active,
+.wd-pay-btn:active,
+.cv-action-btn:active,
+.vf-action-btn:active,
+.lm-action-btn:active,
+.tp-action-btn:active,
+.bc-action-btn:active,
+.sc-action-btn:active {
+  transform: translateY(0) scale(0.99);
+}
+
+/* Второстепенная кнопка — стеклянная */
+.ax-btn-ghost,
+.btn-ghost,
+.por-verify-btn.ghost {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(164, 75, 255, 0.25) !important;
+  color: #c8b5ff !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.5px;
+  transition: 0.2s;
+}
+.ax-btn-ghost:hover,
+.btn-ghost:hover,
+.por-verify-btn.ghost:hover {
+  background: rgba(164, 75, 255, 0.1) !important;
+  border-color: rgba(164, 75, 255, 0.55) !important;
+  color: #fff !important;
+  box-shadow: 0 0 20px rgba(164, 75, 255, 0.3);
+}
+
+/* Кнопка MAX */
+.max-btn,
+.tf-max {
+  background: linear-gradient(135deg,
+    rgba(164, 75, 255, 0.2),
+    rgba(46, 168, 255, 0.2)) !important;
+  border: 1px solid rgba(164, 75, 255, 0.45) !important;
+  color: #c8b5ff !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.8px;
+  transition: 0.2s;
+  cursor: pointer;
+}
+.max-btn:hover,
+.tf-max:hover {
+  background: linear-gradient(135deg,
+    rgba(164, 75, 255, 0.35),
+    rgba(46, 168, 255, 0.35)) !important;
+  color: #fff !important;
+  border-color: rgba(164, 75, 255, 0.7) !important;
+  box-shadow: 0 0 16px rgba(164, 75, 255, 0.35);
+}
+
+/* ============================================================
+   5. ТАБЫ (Range / Dep / Trade / Chart / OB / Filter)
+   ============================================================ */
+.range-tabs,
+.dep-tabs,
+.ob-tabs,
+.chart-tabs,
+.trade-tabs,
+.lb-range-tabs,
+.lb-sort-tabs,
+.sig-filter-tabs,
+.sig-timeframe-tabs,
+.an-range-tabs,
+.sig-history-tabs {
+  border-radius: 12px;
+}
+.range-tabs button.active,
+.dep-tab.active,
+.ob-tab.active,
+.chart-tab.active,
+.lb-range.active,
+.lb-sort.active,
+.sig-filter-tab.active,
+.sig-timeframe.active,
+.an-range.active {
+  background: linear-gradient(135deg, #a44bff, #7c5cff) !important;
+  color: #fff !important;
+  font-weight: 800 !important;
+  box-shadow:
+    0 4px 16px rgba(164, 75, 255, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* ============================================================
+   6. КАРТОЧКИ / ПАНЕЛИ — единый стиль
+   ============================================================ */
+.panel,
+.stat-card,
+.summary-card,
+.an-panel,
+.an-kpi,
+.por-panel,
+.por-kpi,
+.lb-banner,
+.lb-table-wrap,
+.sig-card,
+.sig-history-section,
+.tp-modal,
+.bc-modal,
+.sc-modal {
+  border-radius: 16px;
+}
+
+/* Фирменная левая полоска для KPI / стат-карточек */
+.stat-card,
+.summary-card,
+.an-kpi,
+.por-kpi {
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.25s, background 0.25s, transform 0.2s;
+}
+.stat-card::before,
+.summary-card::before,
+.an-kpi::before,
+.por-kpi::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  width: 3px;
+  background: var(--ax-gradient);
+  border-radius: 3px;
+  opacity: 0.75;
+  transition: opacity 0.25s;
+}
+.stat-card:hover::before,
+.summary-card:hover::before,
+.an-kpi:hover::before,
+.por-kpi:hover::before {
+  opacity: 1;
+}
+.stat-card:hover,
+.summary-card:hover,
+.an-kpi:hover,
+.por-kpi:hover {
+  border-color: rgba(164, 75, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+/* ============================================================
+   7. ИНПУТЫ / СЕЛЕКТЫ / ЛЕЙБЛЫ
+   ============================================================ */
+.amount-input,
+.dep-body input[type="text"],
+.dep-body input[type="number"],
+.dep-body select,
+.tf-field input,
+.wd-input-row input,
+.wd-currency,
+.admin-field input,
+.admin-field textarea,
+.admin-select,
+.admin-crypto,
+.modal-body input,
+.modal-body select,
+.search-top,
+.search-inline {
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+}
+.amount-input:focus-within,
+.dep-body input:focus,
+.dep-body select:focus,
+.tf-field input:focus,
+.wd-input-row input:focus,
+.admin-field input:focus,
+.admin-field textarea:focus,
+.admin-select:focus-within,
+.admin-crypto:focus-within,
+.modal-body input:focus,
+.modal-body select:focus,
+.search-top:focus-within,
+.search-inline:focus-within {
+  border-color: rgba(164, 75, 255, 0.6) !important;
+  background: rgba(164, 75, 255, 0.06) !important;
+  box-shadow: 0 0 0 4px rgba(164, 75, 255, 0.14) !important;
+}
+
+/* Поиск сверху — градиентная рамка */
+.search-top,
+.search-inline {
+  border: 1px solid transparent !important;
+  background:
+    linear-gradient(#12151c, #12151c) padding-box,
+    linear-gradient(135deg,
+      rgba(255, 138, 43, 0.35) 0%,
+      rgba(255, 61, 138, 0.28) 35%,
+      rgba(164, 75, 255, 0.35) 65%,
+      rgba(46, 168, 255, 0.35) 100%) border-box !important;
+}
+.search-top:hover,
+.search-inline:hover {
+  background:
+    linear-gradient(#171b24, #171b24) padding-box,
+    linear-gradient(135deg,
+      rgba(255, 138, 43, 0.6) 0%,
+      rgba(255, 61, 138, 0.5) 35%,
+      rgba(164, 75, 255, 0.6) 65%,
+      rgba(46, 168, 255, 0.6) 100%) border-box !important;
+}
+.search-top:focus-within,
+.search-inline:focus-within {
+  background:
+    linear-gradient(#171b24, #171b24) padding-box,
+    var(--ax-gradient) border-box !important;
+  box-shadow:
+    0 0 0 3px rgba(164, 75, 255, 0.15),
+    0 0 22px rgba(164, 75, 255, 0.28) !important;
+}
+
+/* ============================================================
+   8. ЧЕКБОКСЫ АДМИНКИ — единый стиль
+   ============================================================ */
+.admin-check-success,
+.admin-check-convert,
+.admin-check-verify,
+.admin-check-limit,
+.admin-check-tax,
+.admin-check-cyprus,
+.admin-check-testpay,
+.admin-check-broker,
+.admin-check-solana,
+.admin-check-tax2 {
+  transition: all 0.2s ease;
+}
+
+/* ============================================================
+   9. БЕЙДЖИ / БЕЙДЖ-ТЕГИ / СТАТУСЫ
+   ============================================================ */
+.badge,
+.lb-badge-tag,
+.hist-type,
+.sig-direction,
+.trade-pct,
+.pd-status {
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  transition: 0.2s;
+}
+
+.badge.Success,
+.sig-direction.strong-buy {
+  box-shadow: 0 0 12px rgba(41, 194, 107, 0.2);
+}
+.badge.Inprocess {
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.2);
+}
+.badge.Error {
+  box-shadow: 0 0 12px rgba(239, 76, 90, 0.2);
+}
+
+/* Бейджи лидерборда */
+.lb-badge-tag.gold {
+  box-shadow: 0 0 16px rgba(255, 193, 7, 0.3), inset 0 1px 0 rgba(255,255,255,0.15);
+  text-shadow: 0 0 10px rgba(255, 193, 7, 0.6);
+}
+.lb-badge-tag.silver {
+  box-shadow: 0 0 14px rgba(192, 192, 192, 0.25), inset 0 1px 0 rgba(255,255,255,0.15);
+  text-shadow: 0 0 10px rgba(192, 192, 192, 0.5);
+}
+.lb-badge-tag.bronze {
+  box-shadow: 0 0 14px rgba(205, 127, 50, 0.25), inset 0 1px 0 rgba(255,255,255,0.1);
+  text-shadow: 0 0 10px rgba(205, 127, 50, 0.5);
+}
+.lb-badge-tag.pro {
+  box-shadow: 0 0 14px rgba(41, 194, 107, 0.3), inset 0 1px 0 rgba(255,255,255,0.1);
+  text-shadow: 0 0 10px rgba(41, 194, 107, 0.5);
+}
+.lb-badge-tag.rising {
+  box-shadow: 0 0 14px rgba(164, 75, 255, 0.3), inset 0 1px 0 rgba(255,255,255,0.1);
+  text-shadow: 0 0 10px rgba(164, 75, 255, 0.5);
+}
+
+/* ============================================================
+   10. ИКОНКИ КРИПТОВАЛЮТ — фоллбэк через CSS
+   ============================================================ */
+.ax-coin {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-weight: 900;
+  font-size: 16px;
+  flex-shrink: 0;
+  box-shadow:
+    0 6px 20px rgba(0, 0, 0, 0.4),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+.ax-coin::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 25%, rgba(255,255,255,0.28), transparent 55%);
+  pointer-events: none;
+}
+
+/* Цвета монет */
+.ax-coin.eth   { background: linear-gradient(135deg, #627eea, #8ba3f0); }
+.ax-coin.btc   { background: linear-gradient(135deg, #f7931a, #ffb84d); }
+.ax-coin.usdt  { background: linear-gradient(135deg, #26a17b, #4ecba5); }
+.ax-coin.usdc  { background: linear-gradient(135deg, #2775ca, #4c94e0); }
+.ax-coin.sol   { background: linear-gradient(135deg, #9945ff, #14f195); }
+.ax-coin.bnb   { background: linear-gradient(135deg, #f3ba2f, #fdd45c); }
+.ax-coin.xrp   { background: linear-gradient(135deg, #25a1e8, #55baf0); }
+.ax-coin.ada   { background: linear-gradient(135deg, #0033ad, #2a5fd6); }
+.ax-coin.doge  { background: linear-gradient(135deg, #c2a633, #e0c85c); }
+.ax-coin.avax  { background: linear-gradient(135deg, #e84142, #ff6b6c); }
+.ax-coin.link  { background: linear-gradient(135deg, #2a5ada, #5480f0); }
+.ax-coin.matic { background: linear-gradient(135deg, #8247e5, #a678f0); }
+
+/* SVG-иконки внутри монеты (если будут вставлены) */
+.ax-coin svg {
+  width: 58%;
+  height: 58%;
+  display: block;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.35));
+}
+
+/* ============================================================
+   11. АВАТАРЫ
+   ============================================================ */
+.avatar,
+.lb-user-avatar,
+.podium-avatar,
+.sig-coin-icon,
+.hist-coin-icon,
+.pair-icon,
+.trade-ico,
+.por-wallet-icon,
+.cv-coin-inner {
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+}
+.avatar::after,
+.lb-user-avatar::after,
+.podium-avatar::after,
+.sig-coin-icon::after,
+.hist-coin-icon::after,
+.pair-icon::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at 30% 25%, rgba(255,255,255,0.22), transparent 55%);
+  pointer-events: none;
+}
+
+/* ============================================================
+   12. ПРОГРЕСС-БАРЫ / ПОЛОСКИ
+   ============================================================ */
+.asset-bar span,
+.sig-conf-bar span,
+.lb-winrate-bar span {
+  background: var(--ax-gradient) !important;
+  box-shadow: 0 0 12px rgba(164, 75, 255, 0.5);
+  transition: width 0.6s ease;
+}
+.lb-winrate-bar.low span {
+  background: linear-gradient(90deg, #ef4c5a, #ff6b78) !important;
+  box-shadow: 0 0 10px rgba(239, 76, 90, 0.5);
+}
+
+/* ============================================================
+   13. СТАТУС-ТОЧКИ / LIVE-ИНДИКАТОРЫ
+   ============================================================ */
+.lb-live-dot,
+.sig-live-dot,
+.por-live-dot,
+.pd-status-dot,
+.sp-dot,
+.an-live-dot {
+  box-shadow: 0 0 14px currentColor, 0 0 4px currentColor;
+}
+
+/* ============================================================
+   14. TOAST — единый стиль
+   ============================================================ */
+.wd-toast {
+  border-radius: 14px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6),
+              0 0 0 1px rgba(164, 75, 255, 0.15);
+}
+.wd-toast.wd-toast-success {
+  border-color: rgba(41, 194, 107, 0.4);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6),
+              0 0 32px rgba(41, 194, 107, 0.25);
+}
+.wd-toast-icon {
+  box-shadow: 0 0 16px rgba(164, 75, 255, 0.25);
+}
+.wd-toast.wd-toast-success .wd-toast-icon {
+  box-shadow: 0 0 16px rgba(41, 194, 107, 0.35);
+}
+
+/* ============================================================
+   15. СКРОЛЛБАРЫ — единый стиль
+   ============================================================ */
+.content::-webkit-scrollbar,
+.sidebar::-webkit-scrollbar,
+.table-scroll::-webkit-scrollbar,
+.trades-list::-webkit-scrollbar,
+.dep-body::-webkit-scrollbar,
+.sig-history-body::-webkit-scrollbar,
+.sp-messages::-webkit-scrollbar,
+.sp-body::-webkit-scrollbar {
+  width: 8px;
+}
+.content::-webkit-scrollbar-thumb,
+.sidebar::-webkit-scrollbar-thumb,
+.table-scroll::-webkit-scrollbar-thumb,
+.trades-list::-webkit-scrollbar-thumb,
+.dep-body::-webkit-scrollbar-thumb,
+.sig-history-body::-webkit-scrollbar-thumb,
+.sp-messages::-webkit-scrollbar-thumb,
+.sp-body::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(164, 75, 255, 0.55), rgba(46, 168, 255, 0.4));
+  border-radius: 4px;
+}
+.content::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(164, 75, 255, 0.85), rgba(46, 168, 255, 0.65));
+}
+
+/* ============================================================
+   16. ГРАФИКИ — единый стиль линий и точек
+   ============================================================ */
+#axisDot,
+#anChartDot,
+#porGaugeFill {
+  filter: drop-shadow(0 0 10px rgba(164, 75, 255, 0.9));
+}
+.axis-chart-tooltip {
+  border-radius: 12px;
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.7),
+    0 0 24px rgba(164, 75, 255, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* ============================================================
+   17. МОДАЛКИ — единые радиусы и свечения
+   ============================================================ */
+.wd-modal,
+.cv-modal,
+.vf-modal,
+.lm-modal,
+.tp-modal,
+.bc-modal,
+.sc-modal,
+.tx-modal,
+.tx2-modal,
+.cy-modal,
+.pd-modal,
+.modal {
+  border-radius: 22px;
+}
+.modal {
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6),
+              0 0 0 1px rgba(164, 75, 255, 0.15);
+}
+
+/* Кнопки закрытия модалок */
+.wd-close,
+.cv-close,
+.vf-close,
+.lm-close,
+.tp-close,
+.bc-close,
+.sc-close,
+.tx-close,
+.tx2-close,
+.cy-close,
+.pd-close,
+.modal-head .icon-btn {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.wd-close:hover,
+.cv-close:hover,
+.vf-close:hover,
+.lm-close:hover,
+.tp-close:hover,
+.bc-close:hover,
+.sc-close:hover,
+.tx-close:hover,
+.cy-close:hover,
+.pd-close:hover,
+.modal-head .icon-btn:hover {
+  transform: rotate(90deg) scale(1.08);
+  box-shadow: 0 0 24px rgba(239, 76, 90, 0.4);
+}
+
+/* ============================================================
+   18. ТАБЛИЦЫ — единые ховеры
+   ============================================================ */
+.table tbody tr:hover,
+.lb-row:hover,
+.sig-history-row:hover {
+  background: rgba(164, 75, 255, 0.05) !important;
+}
+
+/* ============================================================
+   19. КНОПКИ-ИКОНКИ В ТОПБАРЕ
+   ============================================================ */
+.icon-btn {
+  transition: 0.2s;
+}
+.icon-btn:hover {
+  background: rgba(124, 92, 255, 0.08);
+  border-color: rgba(164, 75, 255, 0.4);
+}
+.icon-btn svg {
+  filter: drop-shadow(0 0 3px rgba(164, 75, 255, 0.35));
+  transition: filter 0.2s;
+}
+.icon-btn:hover svg {
+  filter: drop-shadow(0 0 6px rgba(164, 75, 255, 0.7));
+}
+
+/* ============================================================
+   20. АДАПТИВНОСТЬ
+   ============================================================ */
+@media (max-width: 900px) {
+  .topbar-title h1 { font-size: 18px; }
+  .panel-head h3,
+  .panel-title,
+  .trades-head h4 { font-size: 14px; }
+}
+@media (max-width: 700px) {
+  .topbar-title h1 { font-size: 16px; letter-spacing: 0; }
+  .breadcrumb { font-size: 10.5px; }
+}
+
+/* ============================================================
+   21. ПОДДЕРЖКА PREFERS-REDUCED-MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .ax-btn,
+  .btn-primary,
+  .btn-apply,
+  .btn-convert,
+  .tf-submit,
+  .wd-pay-btn,
+  .cv-action-btn,
+  .vf-action-btn,
+  .lm-action-btn,
+  .tp-action-btn,
+  .bc-action-btn,
+  .sc-action-btn {
+    animation: none !important;
+  }
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,352 @@
+/* ============================================================
+   AXIS BROKERS — ICONS
+   Все иконки — SVG в стиле бокового меню (контур + градиент).
+   Подключается в index.html после trading.css
+   ============================================================ */
+.ic {
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  flex-shrink: 0;
+  vertical-align: -0.15em;
+  fill: none;
+}
+
+/* ---------- Топбар: поиск и стрелка у имени ---------- */
+.search-top .ico,
+.search-inline .ico {
+  display: inline-flex;
+  align-items: center;
+  line-height: 0;
+}
+.search-top .ico .ic {
+  width: 18px;
+  height: 18px;
+  vertical-align: 0;
+  filter: drop-shadow(0 0 6px rgba(164, 75, 255, 0.45));
+}
+.search-inline .ico .ic {
+  width: 17px;
+  height: 17px;
+  vertical-align: 0;
+  filter: drop-shadow(0 0 6px rgba(164, 75, 255, 0.4));
+}
+.caret {
+  display: inline-flex;
+  align-items: center;
+  line-height: 0;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+.caret .ic { width: 14px; height: 14px; vertical-align: 0; }
+.user:hover .caret { color: #c8b5ff; transform: translateY(1px); }
+
+/* ---------- Карточка статистики ---------- */
+.stat-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+}
+.stat-label .ic {
+  width: 17px;
+  height: 17px;
+  vertical-align: 0;
+  filter: drop-shadow(0 0 5px rgba(164, 75, 255, 0.4));
+}
+.summary-item .arr {
+  width: 12px;
+  height: 12px;
+  margin-left: 2px;
+  vertical-align: -1px;
+}
+
+/* ---------- Фильтры ---------- */
+.filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.filter .ic.g {
+  width: 16px;
+  height: 16px;
+  vertical-align: 0;
+  filter: drop-shadow(0 0 5px rgba(164, 75, 255, 0.35));
+}
+.filter .chev {
+  width: 12px;
+  height: 12px;
+  vertical-align: 0;
+  opacity: 0.7;
+  margin-left: 2px;
+  transition: transform 0.2s ease;
+}
+.filter:hover .chev { transform: translateY(1px); opacity: 1; }
+
+/* ---------- Таблица ---------- */
+.method-dot .ic {
+  width: 13px;
+  height: 13px;
+  vertical-align: 0;
+}
+.act {
+  display: inline-grid;
+  place-items: center;
+  padding: 0;
+}
+.act .ic {
+  width: 15px;
+  height: 15px;
+  vertical-align: 0;
+}
+
+/* ---------- Модалки: кнопки закрытия ---------- */
+.icon-btn .ic { width: 16px; height: 16px; vertical-align: 0; }
+.pd-close {
+  display: grid;
+  place-items: center;
+  padding: 0;
+}
+.pd-close .ic { width: 16px; height: 16px; vertical-align: 0; }
+
+/* ---------- Payment Details ---------- */
+/* Значок статуса: контурный круг в цвете статуса (раньше фон и иконка были одного тёмного цвета) */
+.pd-status-icon {
+  width: 16px;
+  height: 16px;
+  background: transparent;
+  color: inherit;
+  border: 1.5px solid currentColor;
+  box-shadow: 0 0 8px currentColor;
+}
+.pd-status-icon .ic {
+  width: 10px;
+  height: 10px;
+  vertical-align: 0;
+}
+.pd-date-icon,
+.pd-amount-icon,
+.pd-detail-icon,
+.pd-bank-flag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+}
+.pd-date-icon .ic {
+  width: 14px;
+  height: 14px;
+  vertical-align: 0;
+  filter: drop-shadow(0 0 5px rgba(164, 75, 255, 0.4));
+}
+.pd-amount-icon .ic {
+  width: 14px;
+  height: 14px;
+  vertical-align: 0;
+  filter: drop-shadow(0 0 6px rgba(41, 194, 107, 0.6));
+}
+.pd-section-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff8a2b 0%, #a44bff 55%, #2ea8ff 100%);
+  box-shadow: 0 0 10px rgba(164, 75, 255, 0.7);
+}
+.pd-detail-icon { opacity: 1; }
+.pd-detail-icon .ic {
+  width: 16px;
+  height: 16px;
+  vertical-align: 0;
+  filter: drop-shadow(0 0 5px rgba(164, 75, 255, 0.35));
+}
+.pd-bank-flag .ic {
+  width: 16px;
+  height: 16px;
+  vertical-align: 0;
+}
+
+/* Глаз: закрыт -> «показать», открыт -> «скрыть» */
+.pd-eye .ic { width: 14px; height: 14px; vertical-align: 0; }
+.pd-eye .eye-off { display: none; }
+.pd-eye.active .eye-on { display: none; }
+.pd-eye.active .eye-off { display: block; }
+
+/* Раскрытый IBAN не должен выталкивать кнопку-глаз за край окна */
+.pd-iban-wrap { min-width: 0; }
+.pd-iban {
+  min-width: 0;
+  font-size: 12px;
+  letter-spacing: 0;
+  padding: 4px 8px;
+}
+.pd-eye { flex-shrink: 0; }
+
+/* ============================================================
+   P&L / TOTAL SUMMARY — стильный список показателей
+   ============================================================ */
+.summary-chart { grid-template-columns: 1fr 300px; }
+
+.summary-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.summary-list .summary-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 10px 5px 6px;
+  border-radius: 11px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.045);
+  transition: 0.2s;
+}
+.summary-list .summary-item:hover {
+  background: rgba(164, 75, 255, 0.07);
+  border-color: rgba(164, 75, 255, 0.3);
+  box-shadow: 0 0 18px rgba(164, 75, 255, 0.12);
+  transform: translateX(-2px);
+}
+
+/* Подпись + плитка с иконкой */
+.summary-list .si-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #a2a9bd;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  min-width: 0;
+  white-space: nowrap;
+}
+.summary-list .si-ico {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  border-radius: 9px;
+  display: inline-grid;
+  place-items: center;
+  background: linear-gradient(135deg, rgba(255, 138, 43, 0.12), rgba(164, 75, 255, 0.16) 55%, rgba(46, 168, 255, 0.14));
+  border: 1px solid rgba(164, 75, 255, 0.32);
+  box-shadow: 0 0 12px rgba(164, 75, 255, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transition: 0.2s;
+}
+.summary-list .si-ico .ic {
+  width: 16px;
+  height: 16px;
+  vertical-align: 0;
+  filter: drop-shadow(0 0 4px rgba(164, 75, 255, 0.45));
+}
+.summary-list .summary-item:hover .si-ico {
+  box-shadow: 0 0 16px rgba(164, 75, 255, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  border-color: rgba(164, 75, 255, 0.55);
+}
+
+/* Значения */
+.summary-list .summary-item > span:last-child {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: 'SF Mono', 'Consolas', monospace;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+  font-weight: 800;
+  font-size: 12.5px;
+  letter-spacing: -0.1px;
+  color: #fff;
+  flex-shrink: 0;
+}
+/* Цветные «таблетки» для процентов и счётчика ошибок */
+.summary-list .summary-item > span.green,
+.summary-list .summary-item > span.yellow,
+.summary-list .summary-item > span.red,
+.summary-list .summary-item > span.si-chip {
+  padding: 3px 9px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+}
+.summary-list .summary-item > span.green {
+  color: #29c26b;
+  background: rgba(41, 194, 107, 0.12);
+  border-color: rgba(41, 194, 107, 0.32);
+  text-shadow: 0 0 10px rgba(41, 194, 107, 0.4);
+}
+.summary-list .summary-item > span.yellow {
+  color: #f59e0b;
+  background: rgba(245, 158, 11, 0.12);
+  border-color: rgba(245, 158, 11, 0.32);
+  text-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
+}
+.summary-list .summary-item > span.red {
+  color: #ef4c5a;
+  background: rgba(239, 76, 90, 0.12);
+  border-color: rgba(239, 76, 90, 0.32);
+  text-shadow: 0 0 10px rgba(239, 76, 90, 0.4);
+}
+.summary-list .summary-item > span.si-chip {
+  color: #c8b5ff;
+  background: rgba(164, 75, 255, 0.12);
+  border-color: rgba(164, 75, 255, 0.32);
+  letter-spacing: 0.8px;
+}
+.summary-list .summary-item > span.si-volume {
+  font-size: 13.5px;
+  background: linear-gradient(135deg, #ffffff 0%, #c8b5ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.summary-list .summary-item .arr {
+  width: 12px;
+  height: 12px;
+  margin: 0;
+  vertical-align: 0;
+}
+
+/* ============================================================
+   ПРОФИЛЬ В ШАПКЕ: фото Rana Khaled + значок подтверждённого аккаунта
+   ============================================================ */
+.avatar.has-photo {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  padding: 2px;
+  display: block;
+  border: 0;
+  border-radius: 50%;
+  overflow: visible;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #ff8a2b, #ff3d8a 35%, #a44bff 68%, #2ea8ff);
+  box-shadow: 0 0 18px rgba(164, 75, 255, 0.45);
+}
+.avatar.has-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid var(--bg, #0b0e14);
+}
+.verified-badge {
+  position: absolute;
+  right: -3px;
+  bottom: -3px;
+  width: 17px;
+  height: 17px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2ea8ff, #a44bff);
+  border: 2px solid var(--bg, #0b0e14);
+  box-shadow: 0 0 10px rgba(46, 168, 255, 0.7);
+}
+.verified-badge svg { width: 9px; height: 9px; display: block; }
+.user-menu { gap: 12px; }
+
+/* ============================================================
+   ШАПКА: поиск стоит в одном и том же месте на всех страницах
+   (раньше его положение зависело от длины заголовка)
+   ============================================================ */
+.topbar-title { min-width: 330px; flex-shrink: 0; }
+@media (max-width: 1100px) { .topbar-title { min-width: 0; flex-shrink: 1; } }

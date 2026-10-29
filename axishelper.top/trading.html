@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<!-- Mirrored from https://axishelper.top/trading.html by HTTrack Website Copier/3.x [XR&CO], Sun, 11 Oct 2026 11:37:36 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AXIS — Trading</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="trading.css" />
+  <link rel="stylesheet" href="axis-header.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com/">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- ICON SPRITE: единый набор иконок в стиле сайдбара -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="trG" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="24" y2="24">
+        <stop offset="0%" stop-color="#ff8a2b"/>
+        <stop offset="55%" stop-color="#a44bff"/>
+        <stop offset="100%" stop-color="#2ea8ff"/>
+      </linearGradient>
+      <linearGradient id="trEth" gradientUnits="userSpaceOnUse" x1="4" y1="2" x2="20" y2="22">
+        <stop offset="0%" stop-color="#8ba3f0"/>
+        <stop offset="55%" stop-color="#a44bff"/>
+        <stop offset="100%" stop-color="#2ea8ff"/>
+      </linearGradient>
+    </defs>
+
+    <symbol id="i-search" viewBox="0 0 24 24" fill="none">
+      <circle cx="11" cy="11" r="6.5" stroke="url(#trG)" stroke-width="2"/>
+      <path d="M16 16 L20.5 20.5" stroke="url(#trG)" stroke-width="2" stroke-linecap="round"/>
+    </symbol>
+
+    <symbol id="i-eth" viewBox="0 0 24 24" fill="none">
+      <path d="M12 2.5 L5.6 12.3 L12 16.1 L18.4 12.3 Z" stroke="url(#trEth)" stroke-width="1.9" stroke-linejoin="round"/>
+      <path d="M5.6 15.3 L12 21.5 L18.4 15.3 L12 19.1 Z" stroke="url(#trEth)" stroke-width="1.9" stroke-linejoin="round"/>
+    </symbol>
+
+    <symbol id="i-chev-down" viewBox="0 0 24 24" fill="none">
+      <path d="M6 9 L12 15 L18 9" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-arrow-up" viewBox="0 0 24 24" fill="none">
+      <path d="M12 20 V5 M6 11 L12 5 L18 11" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none">
+      <path d="M6 6 L18 18 M18 6 L6 18" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none">
+      <path d="M5 12.5 L10 17.5 L19 7" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+  </svg>
+
+  <div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-logo">
+          <svg viewBox="0 0 64 64" width="36" height="36" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="axisGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%"  stop-color="#ff8a2b"/>
+                <stop offset="35%" stop-color="#ff3d8a"/>
+                <stop offset="65%" stop-color="#a44bff"/>
+                <stop offset="100%" stop-color="#2ea8ff"/>
+              </linearGradient>
+              <linearGradient id="axisGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%"  stop-color="#ff8a2b" stop-opacity="0.55"/>
+                <stop offset="100%" stop-color="#2ea8ff" stop-opacity="0.55"/>
+              </linearGradient>
+            </defs>
+
+            <!-- задние слои (эффект 3D-стопки) -->
+            <path d="M18 10 L46 10 L58 22 L58 48 L30 48 L18 36 Z"
+                  fill="none" stroke="url(#axisGrad2)" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M14 14 L42 14 L54 26 L54 52 L26 52 L14 40 Z"
+                  fill="none" stroke="url(#axisGrad2)" stroke-width="3" stroke-linejoin="round"/>
+
+            <!-- передний шестиугольник с градиентом -->
+            <path d="M10 18 L38 18 L50 30 L50 56 L22 56 L10 44 Z"
+                  fill="#0e1118" stroke="url(#axisGrad)" stroke-width="3.5" stroke-linejoin="round"/>
+
+            <!-- надпись Axis внутри -->
+            <text x="30" y="42" text-anchor="middle"
+                  font-family="Inter, Arial, sans-serif" font-weight="700"
+                  font-size="13" fill="url(#axisGrad)">Axis</text>
+          </svg>
+        </div>
+        <span class="brand-name">AXIS</span>
+      </div>
+
+     <nav class="nav">
+  <div class="nav-section">
+    <a class="nav-item" href="dashboard.html">
+      <span class="ico">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="ag-dash" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ff8a2b"/>
+              <stop offset="55%" stop-color="#a44bff"/>
+              <stop offset="100%" stop-color="#2ea8ff"/>
+            </linearGradient>
+          </defs>
+          <rect x="3" y="3" width="7" height="7" rx="1.5" stroke="url(#ag-dash)" stroke-width="2"/>
+          <rect x="14" y="3" width="7" height="7" rx="1.5" stroke="url(#ag-dash)" stroke-width="2"/>
+          <rect x="3" y="14" width="7" height="7" rx="1.5" stroke="url(#ag-dash)" stroke-width="2"/>
+          <rect x="14" y="14" width="7" height="7" rx="1.5" stroke="url(#ag-dash)" stroke-width="2"/>
+        </svg>
+      </span>
+      Dashboard
+    </a>
+
+    <a class="nav-item active" href="trading.html">
+      <span class="ico">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="ag-trade" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#ff8a2b"/>
+              <stop offset="55%" stop-color="#a44bff"/>
+              <stop offset="100%" stop-color="#2ea8ff"/>
+            </linearGradient>
+          </defs>
+          <rect x="3" y="3" width="18" height="18" rx="2" stroke="url(#ag-trade)" stroke-width="2"/>
+          <line x1="8" y1="15" x2="8" y2="18" stroke="url(#ag-trade)" stroke-width="2" stroke-linecap="round"/>
+          <line x1="12" y1="11" x2="12" y2="18" stroke="url(#ag-trade)" stroke-width="2" stroke-linecap="round"/>
+          <line x1="16" y1="7" x2="16" y2="18" stroke="url(#ag-trade)" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </span>
+      Trading
+    </a>
+
+    <a class="nav-item" href="index.html">
+      <span class="ico">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="ag-broker" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ff8a2b"/>
+              <stop offset="55%" stop-color="#a44bff"/>
+              <stop offset="100%" stop-color="#2ea8ff"/>
+            </linearGradient>
+          </defs>
+          <circle cx="10" cy="8" r="4" stroke="url(#ag-broker)" stroke-width="2"/>
+          <path d="M3 20 C3 15 6.5 13 10 13 C13.5 13 17 15 17 20" stroke="url(#ag-broker)" stroke-width="2" stroke-linecap="round"/>
+          <path d="M18 5 V11 M15 8 H21" stroke="url(#ag-broker)" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </span>
+      Brokers
+    </a>
+
+    <a class="nav-item" href="leaderboard.html">
+      <span class="ico">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="ag-lead" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ff8a2b"/>
+              <stop offset="55%" stop-color="#a44bff"/>
+              <stop offset="100%" stop-color="#2ea8ff"/>
+            </linearGradient>
+          </defs>
+          <path d="M6 4 H18 V9 a6 6 0 0 1 -12 0 Z" stroke="url(#ag-lead)" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M6 6 H3 V8 a3 3 0 0 0 3 3" stroke="url(#ag-lead)" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M18 6 H21 V8 a3 3 0 0 1 -3 3" stroke="url(#ag-lead)" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M9 20 H15 M12 15 V20" stroke="url(#ag-lead)" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </span>
+      Leaderboard
+    </a>
+
+    <a class="nav-item" href="analytics.html">
+      <span class="ico">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="ag-anal" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ff8a2b"/>
+              <stop offset="55%" stop-color="#a44bff"/>
+              <stop offset="100%" stop-color="#2ea8ff"/>
+            </linearGradient>
+          </defs>
+          <path d="M4 20 V10 M10 20 V4 M16 20 V13 M22 20 H2" stroke="url(#ag-anal)" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </span>
+      Analytics
+    </a>
+
+    <a class="nav-item" href="#">
+      <span class="ico">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="ag-set" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ff8a2b"/>
+              <stop offset="55%" stop-color="#a44bff"/>
+              <stop offset="100%" stop-color="#2ea8ff"/>
+            </linearGradient>
+          </defs>
+          <circle cx="12" cy="12" r="3" stroke="url(#ag-set)" stroke-width="2"/>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"
+                stroke="url(#ag-set)" stroke-width="2" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      Settings
+    </a>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-title">Support</div>
+    <a class="nav-item" href="support.html">
+      <span class="ico">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="ag-support" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ff8a2b"/>
+              <stop offset="55%" stop-color="#a44bff"/>
+              <stop offset="100%" stop-color="#2ea8ff"/>
+            </linearGradient>
+          </defs>
+          <path d="M21 12 C21 16.97 16.97 21 12 21 C10.5 21 9.05 20.65 7.75 20 L3 21 L4 16.25 C3.35 14.95 3 13.5 3 12 C3 7.03 7.03 3 12 3 C16.97 3 21 7.03 21 12 Z"
+                stroke="url(#ag-support)" stroke-width="2" stroke-linejoin="round"/>
+          <circle cx="8.5" cy="12" r="1" fill="url(#ag-support)"/>
+          <circle cx="12" cy="12" r="1" fill="url(#ag-support)"/>
+          <circle cx="15.5" cy="12" r="1" fill="url(#ag-support)"/>
+        </svg>
+      </span>
+      Chat Support
+    </a>
+
+    <a class="nav-item" href="#">
+      <span class="ico">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="ag-logout" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ff8a2b"/>
+              <stop offset="55%" stop-color="#a44bff"/>
+              <stop offset="100%" stop-color="#2ea8ff"/>
+            </linearGradient>
+          </defs>
+          <path d="M15 4 H19 a2 2 0 0 1 2 2 V18 a2 2 0 0 1 -2 2 H15"
+                stroke="url(#ag-logout)" stroke-width="2" stroke-linecap="round"/>
+          <path d="M10 8 L6 12 L10 16" stroke="url(#ag-logout)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="6" y1="12" x2="16" y2="12" stroke="url(#ag-logout)" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </span>
+      Log out
+    </a>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-title">Region</div>
+    <div class="nav-item region-item">
+      <span class="ico">
+  <svg viewBox="0 0 30 20" width="22" height="15" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <clipPath id="co-flag">
+        <rect x="0" y="0" width="30" height="20" rx="3"/>
+      </clipPath>
+    </defs>
+    <g clip-path="url(#co-flag)">
+      <rect x="0" y="0" width="30" height="10" fill="#FCD116"/>
+      <rect x="0" y="10" width="30" height="5" fill="#003893"/>
+      <rect x="0" y="15" width="30" height="5" fill="#CE1126"/>
+    </g>
+    <rect x="0" y="0" width="30" height="20" rx="3" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="0.5"></rect>
+  </svg>
+</span>
+Colombia
+    </div>
+  </div>
+</nav>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+      <header class="topbar">
+  <div class="topbar-title">
+    <h1>Trading <span class="t-accent">Axis Crypto</span></h1>
+    <div class="breadcrumb">
+      License №: <b>918283722</b>
+    </div>
+  </div>
+
+  <div class="search-top">
+    <span class="ico"><svg class="ic" aria-hidden="true"><use href="#i-search"/></svg></span>
+    <input type="text" placeholder="Search..." />
+  </div>
+
+  <div class="topbar-right">
+    <button class="icon-btn" title="Notifications">
+  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="bellGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%"   stop-color="#ff8a2b"/>
+        <stop offset="55%"  stop-color="#a44bff"/>
+        <stop offset="100%" stop-color="#2ea8ff"/>
+      </linearGradient>
+    </defs>
+    <path d="M18 8 A6 6 0 0 0 6 8 C6 15 3 17 3 17 H21 C21 17 18 15 18 8 Z"
+          stroke="url(#bellGrad)" stroke-width="2"
+          stroke-linejoin="round" stroke-linecap="round"/>
+    <path d="M10 21 A2 2 0 0 0 14 21"
+          stroke="url(#bellGrad)" stroke-width="2"
+          stroke-linecap="round"/>
+  </svg>
+</button>
+    <div class="user-menu">
+      <div class="avatar" id="userAvatar">R</div>
+      <div class="user" id="openUserEdit">
+        <span id="userName">Rana Khaled</span>
+        <span class="caret"><svg class="ic" aria-hidden="true"><use href="#i-chev-down"/></svg></span>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <section class="content">
+
+        <!-- PAIR HEADER -->
+        <div class="pair-header">
+          <div class="pair-info">
+            <div class="pair-icon"><svg class="ic" aria-hidden="true"><use href="#i-eth"/></svg></div>
+            <div>
+              <div class="pair-name">ETH / COP</div>
+              <div class="pair-sub">Ethereum · Algerian Dinar</div>
+            </div>
+          </div>
+
+          <div class="pair-price">
+            <div class="pair-price-value" id="pairPrice">321 600,00</div>
+            <div class="pair-price-change" id="pairChange">+2.41%</div>
+          </div>
+
+          <div class="pair-stats">
+            <div class="pair-stat">
+              <div class="ps-label">24h High</div>
+              <div class="ps-value" id="statHigh">326 100,00</div>
+            </div>
+            <div class="pair-stat">
+              <div class="ps-label">24h Low</div>
+              <div class="ps-value" id="statLow">312 400,00</div>
+            </div>
+            <div class="pair-stat">
+              <div class="ps-label">24h Volume</div>
+              <div class="ps-value" id="statVolume">1 245 891 ETH</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TRADING LAYOUT -->
+        <div class="trade-grid">
+
+          <!-- ORDER BOOK -->
+          <div class="panel orderbook-panel">
+            <div class="panel-head">
+              <h3>Order Book</h3>
+              <div class="ob-tabs">
+                <button class="ob-tab active" data-view="both">Both</button>
+                <button class="ob-tab" data-view="bids">Bids</button>
+                <button class="ob-tab" data-view="asks">Asks</button>
+              </div>
+            </div>
+
+            <div class="ob-header">
+              <span>Price (COP)</span>
+              <span>Amount (ETH)</span>
+              <span>Total</span>
+            </div>
+
+            <div class="ob-asks" id="obAsks"></div>
+            <div class="ob-mid">
+              <span class="ob-mid-price" id="obMidPrice">321 600,00</span>
+              <span class="ob-mid-arrow"><svg class="ic" aria-hidden="true"><use href="#i-arrow-up"/></svg></span>
+            </div>
+            <div class="ob-bids" id="obBids"></div>
+          </div>
+
+          <!-- CHART -->
+          <div class="panel chart-panel">
+            <div class="panel-head">
+              <h3>ETH / COP</h3>
+              <div class="chart-tabs">
+                <button class="chart-tab" data-interval="1m">1m</button>
+                <button class="chart-tab" data-interval="5m">5m</button>
+                <button class="chart-tab active" data-interval="15m">15m</button>
+                <button class="chart-tab" data-interval="1h">1h</button>
+                <button class="chart-tab" data-interval="4h">4h</button>
+                <button class="chart-tab" data-interval="1d">1d</button>
+              </div>
+            </div>
+
+            <div class="candles-wrap">
+              <svg viewBox="0 0 900 420" preserveAspectRatio="none" id="candlesSvg">
+                <g id="candleGrid"></g>
+                <g id="candleBody"></g>
+                <g id="candleWicks"></g>
+                <g id="candleVolume"></g>
+                <line id="currentPriceLine" x1="0" y1="0" x2="900" y2="0"
+                      stroke="#f59e0b" stroke-width="1" stroke-dasharray="4 4"/>
+                <text id="currentPriceLabel" x="880" y="20" fill="#f59e0b"
+                      font-size="11" font-weight="700" text-anchor="end">0</text>
+              </svg>
+            </div>
+
+            <!-- RECENT TRADES -->
+            <div class="trades-panel">
+              <div class="trades-head">
+                <h4>Recent Trades</h4>
+                <span class="live-dot"><i class="live-pulse"></i>LIVE</span>
+              </div>
+              <div class="trades-head-cols">
+                <span>Price (COP)</span>
+                <span>Amount (ETH)</span>
+                <span>Time</span>
+              </div>
+              <div class="trades-list" id="tradesList"></div>
+            </div>
+          </div>
+
+          <!-- BUY / SELL FORM -->
+          <div class="panel trade-form-panel">
+            <div class="trade-tabs">
+              <button class="trade-tab active" data-side="buy">Buy</button>
+              <button class="trade-tab" data-side="sell">Sell</button>
+            </div>
+
+            <div class="trade-body">
+              <div class="tf-label">Available</div>
+              <div class="tf-available">
+                <span id="tfAvailable">0.00000 ETH</span>
+                <span class="tf-max" id="tfMax">MAX</span>
+              </div>
+
+              <label class="tf-field">
+                <span>Price (COP)</span>
+                <input type="number" id="tfPrice" value="321600" step="0.01" min="0"/>
+              </label>
+
+              <label class="tf-field">
+                <span>Amount (ETH)</span>
+                <input type="number" id="tfAmount" placeholder="0.00000" step="0.00001" min="0"/>
+              </label>
+
+              <!-- Быстрые проценты -->
+              <div class="tf-percents">
+                <button data-percent="25">25%</button>
+                <button data-percent="50">50%</button>
+                <button data-percent="75">75%</button>
+                <button data-percent="100">100%</button>
+              </div>
+
+              <label class="tf-field">
+                <span>Total (COP)</span>
+                <input type="number" id="tfTotal" placeholder="0.00" readonly/>
+              </label>
+
+              <div class="tf-info">
+                <div class="tf-info-row">
+                  <span>Fee (0.1%)</span>
+                  <b id="tfFee">0,00 COP</b>
+                </div>
+                <div class="tf-info-row">
+                  <span>You receive</span>
+                  <b id="tfReceive">0,00000 ETH</b>
+                </div>
+              </div>
+
+              <button class="tf-submit buy" id="tfSubmit">
+                <span id="tfSubmitText">Buy ETH</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </section>
+    </main>
+  </div>
+
+  <!-- TOAST -->
+  <div class="wd-toast" id="wdToast">
+    <div class="wd-toast-icon"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></div>
+    <div class="wd-toast-body">
+      <div class="wd-toast-title" id="wdToastTitle">Trading error</div>
+      <div class="wd-toast-text" id="wdToastText">Something went wrong</div>
+    </div>
+    <button class="wd-toast-close" id="wdToastClose" aria-label="Close"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></button>
+  </div>
+
+  <script src="trading.js"></script>
+</body>
+
+<!-- Mirrored from https://axishelper.top/trading.html by HTTrack Website Copier/3.x [XR&CO], Sun, 11 Oct 2026 11:37:36 GMT -->
+</html>

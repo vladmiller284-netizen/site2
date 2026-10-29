@@ -1,0 +1,1466 @@
+/* ================= TRADING PAGE ================= */
+
+/* Фиксируем страницу — скроллится только .content */
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+.topbar-title h1 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+.breadcrumb {
+  font-size: 11.5px;
+  color: var(--muted);
+}
+.breadcrumb b { color: var(--text); }
+.breadcrumb span { color: #7c5cff; }
+
+/* Основной layout — фиксированная высота */
+.app {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.main {
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Сайдбар скроллится отдельно */
+.sidebar {
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.sidebar::-webkit-scrollbar { width: 6px; }
+.sidebar::-webkit-scrollbar-thumb {
+  background: #2a3140;
+  border-radius: 3px;
+}
+
+/* Скроллится только эта область */
+.content {
+  flex: 1;
+  min-height: 0;              /* важно для flex-скролла */
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  scrollbar-width: thin;
+  scrollbar-color: #2a3140 transparent;
+}
+.content::-webkit-scrollbar { width: 8px; }
+.content::-webkit-scrollbar-track { background: transparent; }
+.content::-webkit-scrollbar-thumb {
+  background: #2a3140;
+  border-radius: 4px;
+}
+.content::-webkit-scrollbar-thumb:hover { background: #3a4152; }
+
+/* ---------- PAIR HEADER ---------- */
+.pair-header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px 22px;
+  flex-wrap: wrap;
+}
+
+.pair-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.pair-icon {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: #627eea;
+  color: #fff;
+  display: grid; place-items: center;
+  font-size: 20px;
+  font-weight: 700;
+}
+.pair-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+}
+.pair-sub {
+  font-size: 11.5px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.pair-price {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.pair-price-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: #29c26b;
+}
+.pair-price-change {
+  font-size: 12px;
+  color: #29c26b;
+  font-weight: 600;
+}
+
+.pair-stats {
+  display: flex;
+  gap: 32px;
+  margin-left: auto;
+}
+.pair-stat { display: flex; flex-direction: column; gap: 4px; }
+.ps-label {
+  font-size: 11.5px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+.ps-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+}
+
+/* ---------- GRID ---------- */
+.trade-grid {
+  display: grid;
+  grid-template-columns: 260px 1fr 300px;
+  gap: 14px;
+  align-items: start;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.panel-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+}
+.panel-head h3 {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* ---------- ORDER BOOK ---------- */
+.ob-tabs {
+  display: flex;
+  gap: 4px;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 3px;
+}
+.ob-tab {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 11.5px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+}
+.ob-tab.active { background: #2563eb; color: #fff; }
+
+.ob-header,
+.trades-head-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 10px 16px;
+  font-size: 10.5px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  border-bottom: 1px solid var(--border);
+}
+
+.ob-asks,
+.ob-bids {
+  display: flex;
+  flex-direction: column;
+}
+
+.ob-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 4px 16px;
+  font-size: 12px;
+  font-family: 'SF Mono', 'Consolas', monospace;
+  position: relative;
+  cursor: pointer;
+  transition: 0.1s;
+}
+.ob-row:hover { background: var(--panel-2); }
+.ob-row .ob-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.15;
+}
+.ob-row .ob-price,
+.ob-row .ob-amount,
+.ob-row .ob-total {
+  position: relative;
+  z-index: 1;
+}
+.ob-asks .ob-price  { color: #ef4c5a; }
+.ob-bids .ob-price  { color: #29c26b; }
+.ob-amount,
+.ob-total { color: var(--text); text-align: right; }
+
+.ob-asks .ob-bg { background: #ef4c5a; right: 0; left: auto; }
+.ob-bids .ob-bg { background: #29c26b; right: 0; left: auto; }
+
+.ob-mid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--panel-2);
+}
+.ob-mid-price {
+  font-size: 16px;
+  font-weight: 700;
+  color: #29c26b;
+}
+.ob-mid-arrow {
+  color: #29c26b;
+  font-size: 12px;
+}
+
+/* ---------- CHART ---------- */
+.chart-tabs {
+  display: flex;
+  gap: 2px;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 3px;
+}
+.chart-tab {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  padding: 4px 9px;
+  border-radius: 6px;
+  font-size: 11.5px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+}
+.chart-tab.active { background: #2563eb; color: #fff; }
+
+.candles-wrap {
+  padding: 16px 12px;
+  border-bottom: 1px solid var(--border);
+}
+.candles-wrap svg {
+  width: 100%;
+  height: 320px;
+  display: block;
+}
+
+.candle-grid-line {
+  stroke: rgba(255,255,255,0.05);
+  stroke-width: 1;
+  stroke-dasharray: 3 5;
+}
+
+/* ---------- RECENT TRADES ---------- */
+.trades-panel {
+  padding: 0;
+}
+.trades-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px 6px;
+}
+.trades-head h4 {
+  font-size: 13px;
+  font-weight: 600;
+}
+.live-dot {
+  font-size: 10px;
+  color: #29c26b;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  animation: pulse 1.4s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.35; }
+}
+
+.trades-list {
+  max-height: 200px;
+  overflow-y: auto;
+}
+.trades-list::-webkit-scrollbar { width: 6px; }
+.trades-list::-webkit-scrollbar-thumb {
+  background: #2a3140;
+  border-radius: 3px;
+}
+
+.trade-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 5px 16px;
+  font-size: 12px;
+  font-family: 'SF Mono', 'Consolas', monospace;
+  transition: 0.1s;
+}
+.trade-row:hover { background: var(--panel-2); }
+.trade-row .tr-price { font-weight: 600; }
+.trade-row .tr-price.buy { color: #29c26b; }
+.trade-row .tr-price.sell { color: #ef4c5a; }
+.trade-row .tr-amount { color: var(--text); text-align: right; }
+.trade-row .tr-time { color: var(--muted); text-align: right; }
+
+/* ---------- TRADE FORM ---------- */
+.trade-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: var(--panel-2);
+}
+.trade-tab {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  padding: 14px;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.15s;
+  font-family: inherit;
+  border-bottom: 2px solid transparent;
+}
+.trade-tab:hover { color: #fff; }
+.trade-tab.active[data-side="buy"]  { color: #29c26b; border-bottom-color: #29c26b; background: var(--panel); }
+.trade-tab.active[data-side="sell"] { color: #ef4c5a; border-bottom-color: #ef4c5a; background: var(--panel); }
+
+.trade-body {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tf-label {
+  font-size: 11.5px;
+  color: var(--muted);
+}
+.tf-available {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 9px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #fff;
+}
+.tf-max {
+  font-size: 11px;
+  color: #7c5cff;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.4px;
+}
+.tf-max:hover { color: #9d85ff; }
+
+.tf-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.tf-field span {
+  font-size: 11.5px;
+  color: var(--muted);
+}
+.tf-field input {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+  color: #fff;
+  outline: none;
+  font-family: inherit;
+  width: 100%;
+}
+.tf-field input:focus { border-color: #7c5cff; }
+.tf-field input[readonly] { color: var(--muted); }
+
+.tf-percents {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+.tf-percents button {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  padding: 7px 0;
+  border-radius: 7px;
+  font-size: 11.5px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: 0.15s;
+}
+.tf-percents button:hover {
+  color: #fff;
+  border-color: #7c5cff;
+}
+
+.tf-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.tf-info-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--muted);
+}
+.tf-info-row b { color: #fff; font-weight: 600; }
+
+.tf-submit {
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  padding: 14px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: 0.15s;
+  color: #fff;
+  letter-spacing: 0.3px;
+}
+.tf-submit.buy {
+  background: linear-gradient(180deg, #29c26b, #1a9a54);
+  box-shadow: 0 6px 20px rgba(41,194,107,0.25);
+}
+.tf-submit.sell {
+  background: linear-gradient(180deg, #ef4c5a, #c43843);
+  box-shadow: 0 6px 20px rgba(239,76,90,0.25);
+}
+.tf-submit:hover { filter: brightness(1.1); }
+.tf-submit:active { transform: scale(0.99); }
+
+/* ---------- TOAST (переиспользуем .wd-toast) ---------- */
+.wd-toast {
+  position: fixed;
+  bottom: 24px; right: 24px;
+  background: #131b2e;
+  border: 1px solid rgba(124,92,255,0.4);
+  border-radius: 12px;
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 340px;
+  max-width: 420px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+  transform: translateX(calc(100% + 40px));
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 300;
+  font-family: 'Inter', sans-serif;
+}
+.wd-toast.show { transform: translateX(0); }
+.wd-toast-icon {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: rgba(124,92,255,0.15);
+  color: #a48cff;
+  display: grid; place-items: center;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.wd-toast-body { flex: 1; }
+.wd-toast-title {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.wd-toast-text {
+  color: #8b93a7;
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+.wd-toast-close {
+  background: transparent;
+  border: none;
+  color: #4a5165;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 4px;
+  font-family: inherit;
+}
+.wd-toast-close:hover { color: #fff; }
+.wd-toast.wd-toast-success { border-color: rgba(41,194,107,0.4); }
+.wd-toast.wd-toast-success .wd-toast-icon {
+  background: rgba(41,194,107,0.15);
+  color: #29c26b;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 1300px) {
+  .trade-grid {
+    grid-template-columns: 240px 1fr 280px;
+  }
+}
+@media (max-width: 1100px) {
+  .trade-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .chart-panel { grid-column: 1 / -1; order: -1; }
+}
+@media (max-width: 800px) {
+  .trade-grid { grid-template-columns: 1fr; }
+  .pair-stats { width: 100%; justify-content: space-between; }
+}
+/* Плавные числа и свечи */
+.pair-price-value,
+.pair-price-change,
+#obMidPrice,
+#pnlValue,
+#pnlPct {
+  transition: color 0.25s ease;
+}
+
+.ob-row {
+  transition: background 0.15s ease;
+}
+
+.candle-body rect,
+.candle-wicks line {
+  transition: 0.15s ease;
+}
+
+/* P&L Ticker */
+#pnlTicker {
+  animation: pnlPulse 2s ease-in-out infinite;
+}
+@keyframes pnlPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(41,194,107,0); }
+  50%      { box-shadow: 0 0 12px 2px rgba(41,194,107,0.15); }
+}
+
+.trade-row {
+  will-change: transform, opacity;
+}
+/* ============================================================
+   AXIS TRADING — GRADIENT TYPOGRAPHY (как на главной)
+   ============================================================ */
+
+/* ---------- 1. ЗАГОЛОВКИ ПАНЕЛЕЙ — с градиентной полоской ---------- */
+.panel-head h3 {
+  font-size: 15px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 0.2px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.panel-head h3::before {
+  content: '';
+  width: 4px;
+  height: 18px;
+  border-radius: 2px;
+  background: linear-gradient(180deg,
+    #ff8a2b 0%,
+    #ff3d8a 35%,
+    #a44bff 65%,
+    #2ea8ff 100%);
+  box-shadow: 0 0 10px rgba(164, 75, 255, 0.45);
+  flex-shrink: 0;
+}
+
+/* ---------- 2. PAIR HEADER — большая градиентная цена ---------- */
+.pair-icon {
+  background: linear-gradient(135deg, #627eea 0%, #8ba3f0 100%);
+  box-shadow: 0 0 24px rgba(98, 126, 234, 0.35);
+}
+
+.pair-name {
+  font-size: 18px;
+  font-weight: 900;
+  background: linear-gradient(135deg, #ffffff 0%, #c8b5ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 0.3px;
+}
+
+.pair-sub {
+  font-size: 11.5px;
+  color: #8b93a7;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+}
+
+.pair-price-value {
+  font-size: 22px;
+  font-weight: 900;
+  font-family: 'SF Mono', 'Consolas', monospace;
+  letter-spacing: -0.5px;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+  color: #29c26b;
+  text-shadow: 0 0 20px rgba(41, 194, 107, 0.35);
+}
+
+.pair-price-change {
+  font-size: 12px;
+  font-weight: 800;
+  font-family: 'SF Mono', 'Consolas', monospace;
+  letter-spacing: 0.2px;
+  font-variant-numeric: tabular-nums;
+  color: #29c26b;
+  text-shadow: 0 0 12px rgba(41, 194, 107, 0.3);
+}
+
+.pair-stat .ps-label {
+  font-size: 10.5px;
+  color: #8b93a7;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+.pair-stat .ps-value {
+  font-size: 14px;
+  font-weight: 800;
+  font-family: 'SF Mono', 'Consolas', monospace;
+  color: #ffffff;
+  letter-spacing: -0.2px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- 3. RANGE TABS / OB TABS / CHART TABS — градиент для активной ---------- */
+.ob-tab,
+.chart-tab {
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  transition: 0.2s;
+}
+
+.ob-tab.active,
+.chart-tab.active {
+  background: linear-gradient(135deg, #a44bff, #7c5cff) !important;
+  color: #fff !important;
+  box-shadow:
+    0 4px 14px rgba(164, 75, 255, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* ---------- 4. ORDER BOOK — цифры моноширинные ---------- */
+.ob-header,
+.trades-head-cols {
+  font-size: 10.5px;
+  color: #8b93a7;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.ob-row {
+  font-family: 'SF Mono', 'Consolas', monospace;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.ob-asks .ob-price {
+  color: #ef4c5a;
+  font-weight: 800;
+  text-shadow: 0 0 10px rgba(239, 76, 90, 0.3);
+}
+.ob-bids .ob-price {
+  color: #29c26b;
+  font-weight: 800;
+  text-shadow: 0 0 10px rgba(41, 194, 107, 0.3);
+}
+
+.ob-amount,
+.ob-total {
+  color: #e7eaf3;
+  font-weight: 600;
+}
+
+/* ---------- 5. MID PRICE — большой градиентный акцент ---------- */
+.ob-mid {
+  background: linear-gradient(90deg,
+    rgba(41, 194, 107, 0.05),
+    rgba(164, 75, 255, 0.08),
+    rgba(41, 194, 107, 0.05));
+  border-top: 1px solid rgba(164, 75, 255, 0.2);
+  border-bottom: 1px solid rgba(164, 75, 255, 0.2);
+  padding: 12px 0;
+}
+
+.ob-mid-price {
+  font-size: 18px;
+  font-weight: 900;
+  font-family: 'SF Mono', 'Consolas', monospace;
+  letter-spacing: -0.5px;
+  font-variant-numeric: tabular-nums;
+  color: #29c26b;
+  text-shadow: 0 0 20px rgba(41, 194, 107, 0.5);
+}
+
+.ob-mid-arrow {
+  color: #29c26b;
+  font-size: 14px;
+  text-shadow: 0 0 12px rgba(41, 194, 107, 0.6);
+}
+
+/* ---------- 6. RECENT TRADES — стильные строки ---------- */
+.trades-head h4 {
+  font-size: 13px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 0.2px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.trades-head h4::before {
+  content: '';
+  width: 3px;
+  height: 14px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, #ff8a2b, #a44bff);
+  box-shadow: 0 0 8px rgba(164, 75, 255, 0.5);
+}
+
+.live-dot {
+  font-size: 10px;
+  color: #29c26b;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba(41, 194, 107, 0.5);
+}
+
+.trade-row {
+  font-family: 'SF Mono', 'Consolas', monospace;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.trade-row .tr-price {
+  font-weight: 800;
+  letter-spacing: -0.2px;
+}
+.trade-row .tr-price.buy {
+  color: #29c26b;
+  text-shadow: 0 0 10px rgba(41, 194, 107, 0.3);
+}
+.trade-row .tr-price.sell {
+  color: #ef4c5a;
+  text-shadow: 0 0 10px rgba(239, 76, 90, 0.3);
+}
+.trade-row .tr-amount {
+  color: #e7eaf3;
+}
+.trade-row .tr-time {
+  color: #8b93a7;
+  font-weight: 500;
+}
+
+/* ---------- 7. TRADE FORM (BUY/SELL) ---------- */
+.tf-label {
+  font-size: 11.5px;
+  color: #8b93a7;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+.tf-available {
+  font-family: 'SF Mono', 'Consolas', monospace;
+  font-variant-numeric: tabular-nums;
+  font-weight: 800;
+  font-size: 13.5px;
+  color: #ffffff;
+  letter-spacing: -0.2px;
+}
+
+.tf-max {
+  font-size: 11px;
+  background: linear-gradient(135deg, #a44bff, #2ea8ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 900;
+  letter-spacing: 0.8px;
+  cursor: pointer;
+}
+.tf-max:hover {
+  filter: brightness(1.2);
+}
+
+.tf-field span {
+  font-size: 11.5px;
+  color: #8b93a7;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.tf-field input {
+  font-family: 'SF Mono', 'Consolas', monospace;
+  font-variant-numeric: tabular-nums;
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: -0.2px;
+  color: #ffffff;
+  transition: 0.2s;
+}
+.tf-field input:focus {
+  border-color: #a44bff;
+  background: rgba(164, 75, 255, 0.06);
+  box-shadow: 0 0 0 4px rgba(164, 75, 255, 0.12);
+}
+.tf-field input[readonly] {
+  color: #8b93a7;
+}
+
+/* Проценты 25/50/75/100 */
+.tf-percents button {
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  transition: 0.15s;
+}
+.tf-percents button:hover {
+  color: #ffffff;
+  border-color: rgba(164, 75, 255, 0.5);
+  background: rgba(164, 75, 255, 0.08);
+  box-shadow: 0 0 14px rgba(164, 75, 255, 0.2);
+}
+
+/* Инфо-строки: Fee / You receive */
+.tf-info-row {
+  font-size: 12px;
+  color: #8b93a7;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+}
+.tf-info-row b {
+  font-family: 'SF Mono', 'Consolas', monospace;
+  font-variant-numeric: tabular-nums;
+  font-weight: 800;
+  color: #ffffff;
+  font-size: 12.5px;
+}
+
+/* ---------- 8. TRADE TABS (Buy/Sell) ---------- */
+.trade-tab {
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 13px;
+}
+
+/* ---------- 9. КНОПКА BUY / SELL — фирменный градиент Axis ---------- */
+.tf-submit,
+.tf-submit.buy,
+.tf-submit.sell {
+  background: linear-gradient(135deg,
+    #ff8a2b 0%,
+    #ff3d8a 35%,
+    #a44bff 65%,
+    #2ea8ff 100%) !important;
+  background-size: 200% 200% !important;
+  color: #fff !important;
+  border: none !important;
+  box-shadow:
+    0 8px 26px rgba(164, 75, 255, 0.45),
+    0 0 0 1px rgba(255, 255, 255, 0.08) inset !important;
+  font-weight: 900 !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase;
+  font-size: 14px;
+  padding: 16px;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s, box-shadow 0.25s, background-position 0.6s;
+  animation: axisBtnFlow 6s ease infinite;
+}
+
+@keyframes axisBtnFlow {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.tf-submit::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(255, 255, 255, 0.35),
+    transparent);
+  transition: left 0.7s;
+}
+.tf-submit:hover::before {
+  left: 100%;
+}
+.tf-submit:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 14px 36px rgba(164, 75, 255, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.12) inset !important;
+  filter: none !important;
+}
+.tf-submit:active {
+  transform: translateY(0) scale(0.99);
+}
+
+/* ---------- 10. P&L TICKER в топбаре — фирменный стиль ---------- */
+#pnlTicker {
+  background: linear-gradient(135deg,
+    rgba(164, 75, 255, 0.15),
+    rgba(46, 168, 255, 0.1)) !important;
+  border: 1px solid rgba(164, 75, 255, 0.4) !important;
+  color: #ffffff !important;
+  box-shadow:
+    0 4px 14px rgba(164, 75, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+#pnlTicker #pnlValue {
+  font-family: 'SF Mono', 'Consolas', monospace;
+  font-variant-numeric: tabular-nums;
+  font-weight: 900;
+  color: #29c26b;
+  text-shadow: 0 0 12px rgba(41, 194, 107, 0.4);
+  letter-spacing: -0.2px;
+}
+#pnlTicker #pnlPct {
+  font-family: 'SF Mono', 'Consolas', monospace;
+  font-variant-numeric: tabular-nums;
+  font-weight: 800;
+  color: #29c26b;
+}
+
+/* ---------- 11. ВСЕ ЦИФРЫ — моноширинные ---------- */
+.pair-price-value,
+.pair-price-change,
+.ob-price,
+.ob-amount,
+.ob-total,
+.ob-mid-price,
+.tr-price,
+.tr-amount,
+.tr-time,
+.tf-available,
+.tf-field input,
+.tf-info-row b,
+#pnlValue,
+#pnlPct {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+}
+
+/* ---------- 12. TOPBAR (единый с главной) ---------- */
+.topbar-title h1 {
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.2px;
+}
+.breadcrumb b {
+  color: #ffffff;
+  font-weight: 700;
+  font-family: 'SF Mono', 'Consolas', monospace;
+  font-variant-numeric: tabular-nums;
+}
+.breadcrumb span {
+  color: #b9a8ff;
+  font-weight: 700;
+}
+/* ============================================================
+   AXIS TRADING — STYLISH PAGE TITLE
+   Градиентный заголовок + красивая лицензия
+   ============================================================ */
+
+/* ---------- Заголовок "Trading Axis Crypto" ---------- */
+.topbar-title h1 {
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: -0.3px;
+  line-height: 1.15;
+  background: linear-gradient(135deg,
+    #ffffff 0%,
+    #e8ddff 40%,
+    #b9a8ff 75%,
+    #7c9bff 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  position: relative;
+  display: inline-block;
+  padding-right: 2px;
+  filter: drop-shadow(0 0 18px rgba(164, 75, 255, 0.35))
+          drop-shadow(0 0 6px rgba(46, 168, 255, 0.2));
+}
+
+/* Тонкая градиентная полоска под заголовком */
+.topbar-title h1::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 100%;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg,
+    #ff8a2b 0%,
+    #ff3d8a 35%,
+    #a44bff 65%,
+    #2ea8ff 100%);
+  box-shadow: 0 0 12px rgba(164, 75, 255, 0.6);
+  opacity: 0.85;
+}
+
+/* Вертикальная градиентная полоска слева от заголовка */
+.topbar-title {
+  position: relative;
+  padding-left: 14px;
+}
+.topbar-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 4px;
+  bottom: 4px;
+  width: 3px;
+  border-radius: 2px;
+  background: linear-gradient(180deg,
+    #ff8a2b 0%,
+    #ff3d8a 35%,
+    #a44bff 65%,
+    #2ea8ff 100%);
+  box-shadow: 0 0 12px rgba(164, 75, 255, 0.6);
+}
+
+/* ---------- Лицензия под заголовком ---------- */
+.breadcrumb {
+  font-size: 11.5px;
+  color: #8b93a7;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  margin-top: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.breadcrumb::before {
+  content: '';
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'><defs><linearGradient id='g' gradientUnits='userSpaceOnUse' x1='0' y1='0' x2='24' y2='24'><stop offset='0' stop-color='%23ff8a2b'/><stop offset='.55' stop-color='%23a44bff'/><stop offset='1' stop-color='%232ea8ff'/></linearGradient></defs><rect x='4.5' y='10.5' width='15' height='10' rx='2.2' stroke='url(%23g)' stroke-width='2'/><path d='M8 10.5 V7.5 a4 4 0 0 1 8 0 V10.5' stroke='url(%23g)' stroke-width='2' stroke-linecap='round'/></svg>") no-repeat center / contain;
+  margin-right: -1px;
+}
+.breadcrumb b {
+  font-family: 'SF Mono', 'Consolas', monospace !important;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+  font-weight: 800;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  color: #c8b5ff !important;
+  padding: 2px 8px;
+  background: rgba(164, 75, 255, 0.1);
+  border: 1px solid rgba(164, 75, 255, 0.25);
+  border-radius: 5px;
+  text-shadow: 0 0 8px rgba(164, 75, 255, 0.4);
+}
+.breadcrumb span {
+  color: #a48cff !important;
+  font-weight: 800;
+}
+
+/* ============================================================
+   AXIS TRADING — ICONS
+   Все иконки — SVG в стиле бокового меню (контур + градиент)
+   ============================================================ */
+.ic {
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  flex-shrink: 0;
+  vertical-align: -0.15em;
+  fill: none;
+}
+
+/* Поиск */
+.search-top .ico {
+  display: inline-flex;
+  align-items: center;
+  line-height: 0;
+}
+.search-top .ico .ic {
+  width: 18px;
+  height: 18px;
+  filter: drop-shadow(0 0 6px rgba(164, 75, 255, 0.45));
+}
+
+/* Стрелка у имени пользователя */
+.caret {
+  display: inline-flex;
+  align-items: center;
+  line-height: 0;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+.caret .ic { width: 14px; height: 14px; vertical-align: 0; }
+.user:hover .caret { color: #c8b5ff; transform: translateY(1px); }
+
+/* Иконка пары ETH: тёмный круг с градиентной рамкой */
+.pair-icon {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(#12151c, #12151c) padding-box,
+    linear-gradient(135deg, #ff8a2b 0%, #a44bff 55%, #2ea8ff 100%) border-box;
+  box-shadow:
+    0 0 0 4px rgba(164, 75, 255, 0.08),
+    0 0 26px rgba(164, 75, 255, 0.35);
+}
+.pair-icon .ic {
+  width: 24px;
+  height: 24px;
+  vertical-align: 0;
+  filter: drop-shadow(0 0 6px rgba(98, 126, 234, 0.6));
+}
+
+/* Стрелка цены в стакане */
+.ob-mid-arrow {
+  display: inline-flex;
+  align-items: center;
+  line-height: 0;
+}
+.ob-mid-arrow .ic {
+  width: 15px;
+  height: 15px;
+  vertical-align: 0;
+  filter: drop-shadow(0 0 6px rgba(41, 194, 107, 0.7));
+}
+
+/* LIVE: пульсирующая точка вместо символа ● */
+.live-dot {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  animation: none;
+}
+.live-pulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #29c26b;
+  box-shadow: 0 0 10px rgba(41, 194, 107, 0.9);
+  animation: pulse 1.4s infinite;
+}
+
+/* Уведомления */
+.wd-toast-icon .ic { width: 16px; height: 16px; vertical-align: 0; }
+.wd-toast-icon {
+  box-shadow: 0 0 16px rgba(164, 75, 255, 0.25);
+}
+.wd-toast.wd-toast-success .wd-toast-icon {
+  box-shadow: 0 0 16px rgba(41, 194, 107, 0.3);
+}
+.wd-toast-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  border-radius: 8px;
+  transition: 0.15s;
+}
+.wd-toast-close .ic { width: 14px; height: 14px; vertical-align: 0; }
+.wd-toast-close:hover { background: rgba(255, 255, 255, 0.06); }
+
+/* ============================================================
+   AXIS — HEADER: логотип/надпись AXIS + заголовок + лицензия
+   Подключать ПОСЛЕ axis-unified.css
+   Палитра = градиент иконок сайдбара (#ff8a2b → #ff3d8a → #a44bff → #2ea8ff)
+   ============================================================ */
+
+:root {
+  --ax-grad: linear-gradient(135deg, #ff8a2b 0%, #ff3d8a 35%, #a44bff 65%, #2ea8ff 100%);
+  --ax-grad-h: linear-gradient(90deg, #ff8a2b 0%, #ff3d8a 35%, #a44bff 65%, #2ea8ff 100%);
+  --ax-glow: rgba(164, 75, 255, 0.55);
+}
+
+/* ---------- Бренд в сайдбаре: логотип + AXIS ---------- */
+.sidebar .brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.sidebar .brand-logo {
+  display: grid;
+  place-items: center;
+  filter: drop-shadow(0 0 10px rgba(164, 75, 255, 0.45))
+          drop-shadow(0 0 4px rgba(255, 138, 43, 0.25));
+  transition: filter .25s ease, transform .25s ease;
+}
+.sidebar .brand:hover .brand-logo {
+  filter: drop-shadow(0 0 14px rgba(164, 75, 255, 0.7))
+          drop-shadow(0 0 6px rgba(255, 138, 43, 0.4));
+  transform: translateY(-1px) scale(1.04);
+}
+
+.sidebar .brand-name {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 6px;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  font-size: 22px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0.26em;
+  background: linear-gradient(135deg, #ffffff 0%, #e8ddff 45%, #b9a8ff 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+  filter: drop-shadow(0 0 14px rgba(164, 75, 255, 0.4));
+}
+/* градиентная линия — как под заголовком справа */
+.sidebar .brand-name::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: calc(100% - 0.26em);   /* компенсируем letter-spacing */
+  height: 2px;
+  border-radius: 2px;
+  background: var(--ax-grad-h);
+  box-shadow: 0 0 12px var(--ax-glow);
+  opacity: .9;
+}
+
+/* ---------- Заголовок «Dashboard Axis Crypto» ---------- */
+.topbar-title h1 {
+  font-size: 24px;
+  letter-spacing: -0.4px;
+}
+/* «Axis Crypto» — фирменный градиент иконок */
+.topbar-title h1 .t-accent {
+  display: inline-block;
+  background: linear-gradient(90deg, #7c9bff 0%, #a44bff 55%, #ff3d8a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ---------- Лицензия: бейдж с градиентной рамкой (как в поиске) ---------- */
+.breadcrumb {
+  gap: 8px;
+  font-size: 12px;
+}
+.breadcrumb::before {
+  width: 14px;
+  height: 14px;
+  filter: drop-shadow(0 0 6px rgba(164, 75, 255, 0.5));
+}
+.breadcrumb b {
+  font-size: 11.5px !important;
+  padding: 3px 10px !important;
+  border: 1px solid transparent !important;
+  border-radius: 7px !important;
+  background:
+    linear-gradient(#171326, #171326) padding-box,
+    linear-gradient(135deg,
+      rgba(255, 138, 43, .55), rgba(255, 61, 138, .45),
+      rgba(164, 75, 255, .6), rgba(46, 168, 255, .55)) border-box !important;
+  box-shadow: 0 0 14px rgba(164, 75, 255, 0.18);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sidebar .brand-logo { transition: none; }
+}
+
+
+/* ============================================================
+   GRADIENT BORDERS — фирменные градиентные обводки Axis
+   (оранжевый → розовый → фиолетовый → голубой)
+   Рамка рисуется самим border'ом (padding-box + border-box),
+   поэтому вёрстка, размеры и overflow не меняются.
+   ============================================================ */
+@property --bd-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+@keyframes axisBorderSpin { to { --bd-angle: 360deg; } }
+
+:root {
+  --bd-fill:   var(--panel,   #12151c);
+  --bd-fill-2: var(--panel-2, #181c26);
+  --bd-soft: linear-gradient(135deg,
+    rgba(255,138,43,0.55) 0%, rgba(255,61,138,0.50) 35%,
+    rgba(164,75,255,0.50) 65%, rgba(46,168,255,0.55) 100%);
+  --bd-strong: linear-gradient(135deg, #ff8a2b 0%, #ff3d8a 35%, #a44bff 65%, #2ea8ff 100%);
+  --bd-spark: conic-gradient(from var(--bd-angle),
+    transparent 0deg, transparent 250deg,
+    rgba(255,138,43,0.95) 290deg, rgba(255,61,138,1) 320deg,
+    rgba(164,75,255,0.95) 340deg, rgba(46,168,255,0.9) 355deg, transparent 360deg);
+}
+
+/* --- шапка пары и панели: мягкий градиент + бегущий блик по рамке --- */
+.pair-header,
+.panel {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--bd-fill), var(--bd-fill)) padding-box,
+    var(--bd-spark) border-box,
+    var(--bd-soft) border-box;
+  animation: axisBorderSpin 7s linear infinite;
+  box-shadow:
+    0 10px 34px rgba(0, 0, 0, 0.35),
+    0 0 26px rgba(164, 75, 255, 0.10);
+  transition: box-shadow 0.3s ease;
+}
+.pair-header:hover,
+.panel:hover {
+  box-shadow:
+    0 14px 40px rgba(0, 0, 0, 0.42),
+    0 0 34px rgba(164, 75, 255, 0.22);
+}
+/* панели не должны мерцать одновременно: сдвигаем фазу */
+.panel:nth-of-type(2) { animation-delay: -2.3s; }
+.panel:nth-of-type(3) { animation-delay: -4.6s; }
+
+/* --- поля ввода: тонкий градиент, на фокусе — яркий --- */
+.tf-field input {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--bd-fill-2), var(--bd-fill-2)) padding-box,
+    linear-gradient(135deg, rgba(255,138,43,0.32), rgba(164,75,255,0.32) 60%, rgba(46,168,255,0.32)) border-box;
+}
+.tf-field input:focus {
+  border-color: transparent;
+  background:
+    linear-gradient(#171a28, #171a28) padding-box,
+    var(--bd-strong) border-box;
+  box-shadow:
+    0 0 0 4px rgba(164, 75, 255, 0.14),
+    0 0 22px rgba(255, 61, 138, 0.20);
+}
+.tf-field input[readonly] {
+  background:
+    linear-gradient(var(--bd-fill-2), var(--bd-fill-2)) padding-box,
+    linear-gradient(135deg, rgba(255,255,255,0.10), rgba(255,255,255,0.04)) border-box;
+}
+
+/* --- кнопки процентов 25/50/75/100 --- */
+.tf-percents button {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--bd-fill-2), var(--bd-fill-2)) padding-box,
+    linear-gradient(135deg, rgba(255,138,43,0.28), rgba(164,75,255,0.28) 60%, rgba(46,168,255,0.28)) border-box;
+}
+.tf-percents button:hover {
+  border-color: transparent;
+  background:
+    linear-gradient(#1a1730, #1a1730) padding-box,
+    var(--bd-strong) border-box;
+  box-shadow: 0 0 16px rgba(255, 61, 138, 0.28);
+}
+
+/* --- активные вкладки стакана и графика: светлая градиентная кайма --- */
+.ob-tab.active,
+.chart-tab.active {
+  box-shadow:
+    0 4px 14px rgba(164, 75, 255, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+}
+
+/* --- Buy / Sell: градиентная рамка и свечение по цвету стороны --- */
+.tf-submit {
+  position: relative;
+  border: 1px solid transparent !important;
+  background-clip: padding-box, border-box !important;
+}
+.tf-submit.buy {
+  background:
+    linear-gradient(180deg, #29c26b, #1a9a54) padding-box,
+    linear-gradient(135deg, #b7ffd6, #29c26b 45%, #2ea8ff) border-box !important;
+}
+.tf-submit.sell {
+  background:
+    linear-gradient(180deg, #ef4c5a, #c43843) padding-box,
+    linear-gradient(135deg, #ffd0a0, #ef4c5a 45%, #a44bff) border-box !important;
+}
+
+/* --- уведомление (toast) --- */
+.wd-toast {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(#131b2e, #131b2e) padding-box,
+    var(--bd-strong) border-box;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 30px rgba(164, 75, 255, 0.25);
+}
+.wd-toast.wd-toast-success {
+  border-color: transparent;
+  background:
+    linear-gradient(#131b2e, #131b2e) padding-box,
+    linear-gradient(135deg, #29c26b, #2ea8ff) border-box;
+}
+
+/* --- кружок пары: усиленная градиентная рамка --- */
+.pair-icon {
+  border-width: 2px;
+  background:
+    linear-gradient(#12151c, #12151c) padding-box,
+    var(--bd-strong) border-box;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pair-header, .panel { animation: none; }
+}

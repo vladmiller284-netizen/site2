@@ -1,0 +1,12 @@
+HTTrack3.50-5 launched on Sun, 11 Oct 2026 14:37:31 at https://axishelper.top/dashboard.html +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar
+(winhttrack -qwC2%Ps2u1%s%uN0%I0p3DaK0H0%kf2%f#f -F "Mozilla/5.0 (compatible; HTTrack; +https://www.httrack.com/)" -%F "<!-- Mirrored from {url} by HTTrack Website Copier/3.x [XR&CO], {date} -->" -%l "ru, en, *" https://axishelper.top/dashboard.html -O1 "F:\somestuff\cryptostartupsite" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+14:37:36	Error: 	"Not Found" (404) at link https://axishelper.top/axis-header.css (from https://axishelper.top/dashboard.html)
+
+HTTrack Website Copier/3.50-5 mirror complete in 10 seconds : 30 links scanned, 28 files written (14318274 bytes overall) [14327881 bytes received at 1432788 bytes/sec], 7.5 requests per connection
+(1 errors, 0 warnings, 0 messages)

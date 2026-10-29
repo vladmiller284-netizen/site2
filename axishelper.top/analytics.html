@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from https://axishelper.top/analytics.html by HTTrack Website Copier/3.x [XR&CO], Sun, 11 Oct 2026 11:37:38 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AXIS — Signals &amp; Analytics by Carlos E. Mendoza</title>
+    <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="trading.css" />
+  <link rel="stylesheet" href="brokers.css" />
+  <link rel="stylesheet" href="brokers-icons.css" />
+  <link rel="stylesheet" href="analytics.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com/">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet">
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="gx" gradientUnits="userSpaceOnUse" x1="2" y1="2" x2="22" y2="22"><stop offset="0" stop-color="#ff8a2b"/><stop offset=".4" stop-color="#ff3d8a"/><stop offset=".7" stop-color="#a44bff"/><stop offset="1" stop-color="#2ea8ff"/></linearGradient></defs></svg>
+  <div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-logo">
+          <svg viewBox="0 0 64 64" width="36" height="36" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="axisGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%"  stop-color="#ff8a2b"/>
+                <stop offset="35%" stop-color="#ff3d8a"/>
+                <stop offset="65%" stop-color="#a44bff"/>
+                <stop offset="100%" stop-color="#2ea8ff"/>
+              </linearGradient>
+              <linearGradient id="axisGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%"  stop-color="#ff8a2b" stop-opacity="0.55"/>
+                <stop offset="100%" stop-color="#2ea8ff" stop-opacity="0.55"/>
+              </linearGradient>
+            </defs>
+            <path d="M18 10 L46 10 L58 22 L58 48 L30 48 L18 36 Z"
+                  fill="none" stroke="url(#axisGrad2)" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M14 14 L42 14 L54 26 L54 52 L26 52 L14 40 Z"
+                  fill="none" stroke="url(#axisGrad2)" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M10 18 L38 18 L50 30 L50 56 L22 56 L10 44 Z"
+                  fill="#0e1118" stroke="url(#axisGrad)" stroke-width="3.5" stroke-linejoin="round"/>
+            <text x="30" y="42" text-anchor="middle"
+                  font-family="Inter, Arial, sans-serif" font-weight="700"
+                  font-size="13" fill="url(#axisGrad)">Axis</text>
+          </svg>
+        </div>
+        <span class="brand-name">AXIS</span>
+      </div>
+
+     <nav class="nav">
+  <div class="nav-section">
+    <a class="nav-item" href="dashboard.html">
+      <span class="ico">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="ag-dash" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ff8a2b"/>
+              <stop offset="55%" stop-color="#a44bff"/>
+              <stop offset="100%" stop-color="#2ea8ff"/>
+            </linearGradient>
+          </defs>
+          <rect x="3" y="3" width="7" height="7" rx="1.5" stroke="url(#ag-dash)" stroke-width="2"/>
+          <rect x="14" y="3" width="7" height="7" rx="1.5" stroke="url(#ag-dash)" stroke-width="2"/>
+          <rect x="3" y="14" width="7" height="7" rx="1.5" stroke="url(#ag-dash)" stroke-width="2"/>
+          <rect x="14" y="14" width="7" height="7" rx="1.5" stroke="url(#ag-dash)" stroke-width="2"/>
+        </svg>
+      </span>
+      Dashboard
+    </a>
+
+    <a class="nav-item" href="trading.html">
+      <span class="ico">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="ag-trade" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#ff8a2b"/>
+              <stop offset="55%" stop-color="#a44bff"/>
+              <stop offset="100%" stop-color="#2ea8ff"/>
+            </linearGradient>
+          </defs>
+          <rect x="3" y="3" width="18" height="18" rx="2" stroke="url(#ag-trade)" stroke-width="2"/>
+          <line x1="8" y1="15" x2="8" y2="18" stroke="url(#ag-trade)" stroke-width="2" stroke-linecap="round"/>
+          <line x1="12" y1="11" x2="12" y2="18" stroke="url(#ag-trade)" stroke-width="2" stroke-linecap="round"/>
+          <line x1="16" y1="7" x2="16" y2="18" stroke="url(#ag-trade)" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </span>
+      Trading
+    </a>
+
+    <a class="nav-item" href="index.html">
+      <span class="ico">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="ag-broker" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ff8a2b"/>
+              <stop offset="55%" stop-color="#a44bff"/>
+              <stop offset="100%" stop-color="#2ea8ff"/>
+            </linearGradient>
+          </defs>
+          <circle cx="10" cy="8" r="4" stroke="url(#ag-broker)" stroke-width="2"/>
+          <path d="M3 20 C3 15 6.5 13 10 13 C13.5 13 17 15 17 20" stroke="url(#ag-broker)" stroke-width="2" stroke-linecap="round"/>
+          <path d="M18 5 V11 M15 8 H21" stroke="url(#ag-broker)" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </span>
+      Brokers
+    </a>
+
+    <a class="nav-item" href="leaderboard.html">
+      <span class="ico">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="ag-lead" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ff8a2b"/>
+              <stop offset="55%" stop-color="#a44bff"/>
+              <stop offset="100%" stop-color="#2ea8ff"/>
+            </linearGradient>
+          </defs>
+          <path d="M6 4 H18 V9 a6 6 0 0 1 -12 0 Z" stroke="url(#ag-lead)" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M6 6 H3 V8 a3 3 0 0 0 3 3" stroke="url(#ag-lead)" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M18 6 H21 V8 a3 3 0 0 1 -3 3" stroke="url(#ag-lead)" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M9 20 H15 M12 15 V20" stroke="url(#ag-lead)" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </span>
+      Leaderboard
+    </a>
+
+    <a class="nav-item active" href="analytics.html">
+      <span class="ico">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="ag-anal" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ff8a2b"/>
+              <stop offset="55%" stop-color="#a44bff"/>
+              <stop offset="100%" stop-color="#2ea8ff"/>
+            </linearGradient>
+          </defs>
+          <path d="M4 20 V10 M10 20 V4 M16 20 V13 M22 20 H2" stroke="url(#ag-anal)" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </span>
+      Analytics
+    </a>
+
+    <a class="nav-item" href="#">
+      <span class="ico">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="ag-set" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ff8a2b"/>
+              <stop offset="55%" stop-color="#a44bff"/>
+              <stop offset="100%" stop-color="#2ea8ff"/>
+            </linearGradient>
+          </defs>
+          <circle cx="12" cy="12" r="3" stroke="url(#ag-set)" stroke-width="2"/>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"
+                stroke="url(#ag-set)" stroke-width="2" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      Settings
+    </a>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-title">Support</div>
+    <a class="nav-item" href="support.html">
+      <span class="ico">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="ag-support" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ff8a2b"/>
+              <stop offset="55%" stop-color="#a44bff"/>
+              <stop offset="100%" stop-color="#2ea8ff"/>
+            </linearGradient>
+          </defs>
+          <path d="M21 12 C21 16.97 16.97 21 12 21 C10.5 21 9.05 20.65 7.75 20 L3 21 L4 16.25 C3.35 14.95 3 13.5 3 12 C3 7.03 7.03 3 12 3 C16.97 3 21 7.03 21 12 Z"
+                stroke="url(#ag-support)" stroke-width="2" stroke-linejoin="round"/>
+          <circle cx="8.5" cy="12" r="1" fill="url(#ag-support)"/>
+          <circle cx="12" cy="12" r="1" fill="url(#ag-support)"/>
+          <circle cx="15.5" cy="12" r="1" fill="url(#ag-support)"/>
+        </svg>
+      </span>
+      Chat Support
+    </a>
+
+    <a class="nav-item" href="#">
+      <span class="ico">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="ag-logout" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ff8a2b"/>
+              <stop offset="55%" stop-color="#a44bff"/>
+              <stop offset="100%" stop-color="#2ea8ff"/>
+            </linearGradient>
+          </defs>
+          <path d="M15 4 H19 a2 2 0 0 1 2 2 V18 a2 2 0 0 1 -2 2 H15"
+                stroke="url(#ag-logout)" stroke-width="2" stroke-linecap="round"/>
+          <path d="M10 8 L6 12 L10 16" stroke="url(#ag-logout)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="6" y1="12" x2="16" y2="12" stroke="url(#ag-logout)" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </span>
+      Log out
+    </a>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-title">Region</div>
+    <div class="nav-item region-item">
+      <span class="ico">
+  <svg viewBox="0 0 30 20" width="22" height="15" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <clipPath id="co-flag">
+        <rect x="0" y="0" width="30" height="20" rx="3"/>
+      </clipPath>
+    </defs>
+    <g clip-path="url(#co-flag)">
+      <rect x="0" y="0" width="30" height="10" fill="#FCD116"/>
+      <rect x="0" y="10" width="30" height="5" fill="#003893"/>
+      <rect x="0" y="15" width="30" height="5" fill="#CE1126"/>
+    </g>
+    <rect x="0" y="0" width="30" height="20" rx="3" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="0.5"></rect>
+  </svg>
+</span>
+Colombia
+    </div>
+  </div>
+</nav>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+     <header class="topbar">
+  <div class="topbar-title">
+<h1>Analytics <span class="t-accent">Axis Crypto</span></h1>
+    <div class="breadcrumb">
+      License №: <b>918283722</b> · 
+    </div>
+  </div>
+
+  <div class="search-top">
+    <span class="ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="url(#tbSG)" stroke-width="2" stroke-linecap="round" aria-hidden="true"><defs><linearGradient id="tbSG" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ff8a2b"/><stop offset="55%" stop-color="#a44bff"/><stop offset="100%" stop-color="#2ea8ff"/></linearGradient></defs><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></span>
+    <input type="text" id="searchInput" placeholder="Search..." />
+  </div>
+
+  <div class="topbar-right">
+   <button class="icon-btn" title="Notifications">
+  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="bellGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%"   stop-color="#ff8a2b"/>
+        <stop offset="55%"  stop-color="#a44bff"/>
+        <stop offset="100%" stop-color="#2ea8ff"/>
+      </linearGradient>
+    </defs>
+    <path d="M18 8 A6 6 0 0 0 6 8 C6 15 3 17 3 17 H21 C21 17 18 15 18 8 Z"
+          stroke="url(#bellGrad)" stroke-width="2"
+          stroke-linejoin="round" stroke-linecap="round"/>
+    <path d="M10 21 A2 2 0 0 0 14 21"
+          stroke="url(#bellGrad)" stroke-width="2"
+          stroke-linecap="round"/>
+  </svg>
+</button>
+    <div class="user-menu">
+      <div class="avatar has-photo" id="userAvatar"><img src="rana.jpg" alt="Carlos E. Mendoza"><span class="verified-badge" title="Verified account" aria-label="Verified account"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5.5 12.5l4 4 9-9"/></svg></span></div>
+      <div class="user" id="openUserEdit">
+        <span id="userName">Carlos E. Mendoza</span>
+        <span class="caret"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <section class="content">
+        <div class="ticker" aria-label="Market prices"><div class="ticker-track" id="tickerTrack"></div></div>
+        <div class="an-hero">
+  <div class="an-hero-left">
+    <div class="an-hero-avatar"><img src="rana.jpg" alt="Carlos E. Mendoza" width="54" height="54"><span class="an-verified" title="Verified analyst"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 12.5l4 4 9-9"/></svg></span></div>
+    <div>
+      <div class="an-hero-title">Carlos E. Mendoza <span class="an-pro">Pro analyst</span></div>
+      <div class="an-hero-sub"><span class="an-live-badge"><span class="an-live-dot"></span>Live</span>Trading signals and portfolio analytics<span class="an-clock" id="anClock"></span></div>
+    </div>
+  </div>
+  <div class="an-range-tabs tabs" id="rangeTabs">
+          <button class="an-range tab active" data-range="7d">7 days</button>
+          <button class="an-range tab" data-range="30d">30 days</button>
+          <button class="an-range tab" data-range="90d">90 days</button>
+          <button class="an-range tab" data-range="all">All time</button>
+        </div>
+</div>
+        <div class="an-kpi-grid">
+          <div class="an-kpi">
+            <div class="an-kpi-head">
+              <span class="an-kpi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="url(#gx)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg></span>
+              <span class="an-kpi-label">Total P&L</span>
+            </div>
+            <div class="an-kpi-value green" id="kpiPnl">+0.00 DZD</div>
+            <div class="an-kpi-sub">
+              <span class="green" id="kpiPnlPct">+0.00%</span>
+              <span class="muted">vs previous period</span>
+            </div>
+          </div>
+
+          <div class="an-kpi">
+            <div class="an-kpi-head">
+              <span class="an-kpi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="url(#gx)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span>
+              <span class="an-kpi-label">Total Volume</span>
+            </div>
+            <div class="an-kpi-value" id="kpiVolume">$0.00</div>
+            <div class="an-kpi-sub">
+              <span class="muted" id="kpiVolumeTrades">0 trades</span>
+            </div>
+          </div>
+
+          <div class="an-kpi">
+            <div class="an-kpi-head">
+              <span class="an-kpi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="url(#gx)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg></span>
+              <span class="an-kpi-label">Winrate</span>
+            </div>
+            <div class="an-kpi-value" id="kpiWinrate">0%</div>
+            <div class="an-kpi-sub">
+              <span class="muted"><span id="kpiWins">0</span>W / <span id="kpiLosses">0</span>L</span>
+            </div>
+          </div>
+
+          <div class="an-kpi">
+            <div class="an-kpi-head">
+              <span class="an-kpi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="url(#gx)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></span>
+              <span class="an-kpi-label">Avg Trade</span>
+            </div>
+            <div class="an-kpi-value" id="kpiAvg">$0.00</div>
+            <div class="an-kpi-sub">
+              <span class="muted" id="kpiAvgTrades">0 per day</span>
+            </div>
+          </div>
+        </div>
+        <div class="an-top">
+          <div class="an-left">
+            <div class="an-panel an-chart-panel">
+          <div class="an-panel-head">
+            <div class="an-panel-hl"><span class="an-panel-ico"><svg viewBox="0 0 24 24" fill="none" stroke="url(#gx)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-6"/></svg></span><div><div class="an-panel-title">Portfolio Performance</div>
+              <div class="an-panel-sub" id="anChartSub">Last 7 days</div></div></div>
+            <div class="an-chart-legend">
+              <span><span class="an-dot green"></span> Profit</span>
+              <span><span class="an-dot red"></span> Loss</span>
+            </div>
+          </div>
+
+          <div class="an-chart-wrap">
+            <svg viewBox="0 0 1000 340" preserveAspectRatio="none" id="mainChart">
+              <defs>
+                <linearGradient id="anGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%"   stop-color="#33d69f" stop-opacity="0.35"/>
+                  <stop offset="100%" stop-color="#33d69f" stop-opacity="0"/>
+                </linearGradient>
+                <linearGradient id="anGradLine" x1="0" y1="0" x2="100%" y2="0"><stop offset="0%" stop-color="#a44bff"/><stop offset="55%" stop-color="#2ea8ff"/><stop offset="100%" stop-color="#33d69f"/></linearGradient>
+              <linearGradient id="anTagGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8f6bff"/><stop offset="1" stop-color="#2ea8ff"/></linearGradient></defs>
+              <g id="anChartGrid"></g>
+              <path id="anChartArea" d="" fill="url(#anGrad)"/>
+              <path id="anChartLine" d="" fill="none" stroke="url(#anGradLine)" stroke-width="3"
+                    stroke-linejoin="round" stroke-linecap="round"/>
+              <line id="anChartLast" stroke="#2ea8ff" stroke-opacity=".5" stroke-dasharray="4 5"/>
+              <circle id="anChartRing" r="6" fill="none" stroke="#33d69f" stroke-width="2"/>
+              <circle id="anChartDot" r="5" fill="#33d69f" stroke="#0f131d" stroke-width="3"/>
+              <g id="anChartTag"><rect width="68" height="22" rx="7" fill="url(#anTagGrad)"/><text x="34" y="15" text-anchor="middle">0</text></g>
+            </svg>
+          </div>
+
+          <div class="an-chart-stats">
+            <div class="an-chart-stat">
+              <div class="an-cs-label">Best move</div>
+              <div class="an-cs-value green" id="anBestDay">—</div>
+            </div>
+            <div class="an-chart-stat">
+              <div class="an-cs-label">Worst move</div>
+              <div class="an-cs-value red" id="anWorstDay">—</div>
+            </div>
+            <div class="an-chart-stat">
+              <div class="an-cs-label">Avg move</div>
+              <div class="an-cs-value" id="anAvgDaily">—</div>
+            </div>
+            <div class="an-chart-stat">
+              <div class="an-cs-label">Volatility</div>
+              <div class="an-cs-value" id="anVolatility">—</div>
+            </div>
+          </div>
+        </div>
+            <div class="an-left-bottom">
+              <div class="an-panel">
+            <div class="an-panel-head">
+              <div class="an-panel-hl"><span class="an-panel-ico"><svg viewBox="0 0 24 24" fill="none" stroke="url(#gx)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span><div><div class="an-panel-title">Monthly Profit</div>
+                <div class="an-panel-sub">P&L by month</div></div></div>
+            </div>
+            <div class="an-bars-wrap">
+              <svg viewBox="0 0 500 240" preserveAspectRatio="none" id="barChart">
+                <defs>
+                  <linearGradient id="barGreen" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%"   stop-color="#33d69f"/>
+                    <stop offset="100%" stop-color="#1a9a54"/>
+                  </linearGradient>
+                  <linearGradient id="barRed" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%"   stop-color="#ff6177"/>
+                    <stop offset="100%" stop-color="#c43843"/>
+                  </linearGradient>
+                </defs>
+                <g id="barGrid"></g>
+                <g id="barBars"></g>
+                <g id="barLabels"></g>
+              </svg>
+            </div>
+          </div>
+              <div class="an-panel">
+            <div class="an-panel-head">
+              <div class="an-panel-hl"><span class="an-panel-ico"><svg viewBox="0 0 24 24" fill="none" stroke="url(#gx)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-9-9v9z"/><path d="M15.5 3.5A9 9 0 0 1 20.5 8.5H15.5z"/></svg></span><div><div class="an-panel-title">Assets Distribution</div>
+                <div class="an-panel-sub">By portfolio allocation</div></div></div>
+            </div>
+            <div class="an-donut-wrap">
+              <svg viewBox="0 0 200 200" id="donutChart">
+                <g id="donutSegments" transform="translate(100,100)"></g>
+                <text x="100" y="95" text-anchor="middle" font-size="11"
+                      fill="#8b93a7" font-family="Manrope, sans-serif">Total</text>
+                <text x="100" y="118" text-anchor="middle" font-size="18"
+                      font-weight="700" fill="#fff" font-family="Manrope, sans-serif"
+                      id="donutTotal">$0</text>
+              </svg>
+              <div class="an-donut-legend" id="donutLegend"></div>
+            </div>
+          </div>
+            </div>
+          </div>
+          <div class="an-panel an-signals">
+  <div class="an-panel-head">
+    <div class="an-panel-hl"><span class="an-panel-ico"><svg viewBox="0 0 24 24" fill="none" stroke="url(#gx)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></span>
+      <div><div class="an-panel-title">Live signals</div><div class="an-panel-sub">Entry, stop and targets</div></div></div>
+    <div class="seg tabs" id="sigFilter"><button class="seg-btn tab active" data-f="all">All</button><button class="seg-btn tab" data-f="buy">Buy</button><button class="seg-btn tab" data-f="sell">Sell</button></div>
+  </div>
+  <div class="sig-grid" id="sigGrid"></div>
+  <div class="sig-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>Trading involves risk. Signals are not financial advice.</div>
+</div>
+        </div>
+        <div class="an-trades-row">
+          <div class="an-panel">
+            <div class="an-panel-head">
+              <div class="an-panel-hl"><span class="an-panel-ico"><svg viewBox="0 0 24 24" fill="none" stroke="url(#gx)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span><div><div class="an-panel-title">Best Results</div>
+                <div class="an-panel-sub">Best performing</div></div></div>
+            </div>
+            <div class="an-trades-list" id="topTrades"></div>
+          </div>
+          <div class="an-panel">
+            <div class="an-panel-head">
+              <div class="an-panel-hl"><span class="an-panel-ico"><svg viewBox="0 0 24 24" fill="none" stroke="url(#gx)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7l10 10M17 9v8H9"/></svg></span><div><div class="an-panel-title">Worst Results</div>
+                <div class="an-panel-sub">Biggest losses</div></div></div>
+            </div>
+            <div class="an-trades-list" id="worstTrades"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="analytics.js"></script>
+  <script src="rana-card.js"></script>
+</body>
+
+<!-- Mirrored from https://axishelper.top/analytics.html by HTTrack Website Copier/3.x [XR&CO], Sun, 11 Oct 2026 11:37:39 GMT -->
+</html>
